@@ -1,2 +1,4 @@
 name: CIBOLib
 markdown: kramdown
+
+theme: jekyll-theme-slate
