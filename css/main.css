@@ -28,10 +28,9 @@ p {
     line-height: 1.4em;
     color: #333;
 }
-blurb {
+.blurb {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
-    list-style: none;
     font-weight: bold;
 }
 footer {
