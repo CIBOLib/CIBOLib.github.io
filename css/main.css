@@ -4,7 +4,7 @@ body {
 }
 
 nav ul, footer ul {
-    font-family:'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
+    font-family:'Fira Sans Thin', 'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -30,12 +30,12 @@ a:visited {
 
 h1 {
     font-size: 3em;
-    font-family:'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
+    font-family:'Fira Sans Thin', 'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
 }
 
 h2 {
     font-size: 1em;
-    font-family:'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
+    font-family:'Fira Sans Thin', 'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
 }
 
 p {
@@ -45,7 +45,7 @@ p {
 }
 
 .blurb {
-    font-family:'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
+    font-family:'Fira Sans Thin', 'Fira Sans', 'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
 }
 
