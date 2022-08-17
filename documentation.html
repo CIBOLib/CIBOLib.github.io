@@ -31,8 +31,19 @@ title: CIBOLib Documentation
   More formally, the class of problems considered is defined by
 
   \begin{align}
-  \max_{x,y} c^T x + d^T y
+  \min_{x,y} \quad & c^T x + d^T y \\
+  \text{s.t.} \quad & Ax + By \geq a, \\
+  & y \in S(x),
   \end{align}
+
+  where $S(x)$ is the set of solutions of the $x$-parameterized
+  lower-level problem
+
+  \begin{align}
+  \min_y \quad & e^T y \\
+  \text{s.t.} \quad & Cx + Dy \geq b.
+  \end{align}
+
 </div><!-- /.blurb -->
 
 <h2>Input file format</h2>
