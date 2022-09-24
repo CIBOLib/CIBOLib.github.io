@@ -44,39 +44,11 @@ title: CIBOLib Browse Instances
     </tbody>
   </table>
 
-  <script>
-    async function fetchJsonFile() {
-      const table_content = new DocumentFragment();
-      let jsonFile = await fetch('jsons/collection/all_instances.json');
-      let content = await jsonFile.json();
-      return content;
-    }
-    async function buildTable() {
-      var content = await fetchJsonFile();
-      const instances_content = document.querySelector('tbody');
-      for (instancename in content) {
-        const elem = document.createElement('tr');
-        const instance = content[instancename];
-        for (key in instance) {
-          if (key != "llNumVariablesWithLB" && key != "llNumVariablesWithUB" && key != "linkVariablesMinLB" && key != "linkVariablesMaxUB") {
-            const value = document.createElement('td');
-            value.append(instance[key]);
-            //console.log(instance[key])
-            elem.appendChild(value);
-          }
-        }
-        instances_content.appendChild(elem);
-
-      }
-    }
-    buildTable();
-
-  </script>
-
   <script src="tablefilter/tablefilter.js"></script>
 
-  <script data-config="">
-    var filtersConfig = {
+  <script>
+    async function intializeTableFilter(){
+      var filtersConfig = {
       base_path: 'tablefilter/',
       auto_filter: {
         delay: 110 //milliseconds
@@ -110,5 +82,36 @@ title: CIBOLib Browse Instances
     };
     var tf = new TableFilter('instances', filtersConfig);
     tf.init();
+    }
+    async function fetchJsonFile() {
+      const table_content = new DocumentFragment();
+      let jsonFile = await fetch('jsons/collection/all_instances.json');
+      let content = await jsonFile.json();
+      return content;
+    }
+    async function buildTable() {
+      var content = await fetchJsonFile();
+      const instances_content = document.querySelector('tbody');
+      for (instancename in content) {
+        const elem = document.createElement('tr');
+        const instance = content[instancename];
+        for (key in instance) {
+          if (key != "llNumVariablesWithLB" && key != "llNumVariablesWithUB" && key != "linkVariablesMinLB" && key != "linkVariablesMaxUB") {
+            const value = document.createElement('td');
+            value.append(instance[key]);
+            //console.log(instance[key])
+            elem.appendChild(value);
+          }
+        }
+        instances_content.appendChild(elem);
+      }
+      intializeTableFilter()
+    }
+    buildTable();
+
+  </script>
+
+  <script data-config="">
+    
   </script>
 </div><!-- /.blurb -->
