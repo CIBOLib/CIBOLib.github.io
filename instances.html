@@ -47,41 +47,41 @@ title: CIBOLib Browse Instances
   <script src="tablefilter/tablefilter.js"></script>
 
   <script>
-    async function intializeTableFilter(){
+    async function intializeTableFilter() {
       var filtersConfig = {
-      base_path: 'tablefilter/',
-      auto_filter: {
-        delay: 110 //milliseconds
-      },
-      rows_counter: { text: 'Instances: ' },
-      btn_reset: { text: 'Clear' },
-      responsive: true,
-      loader: true,
-      no_results_message: true,
+        base_path: 'tablefilter/',
+        auto_filter: {
+          delay: 110 //milliseconds
+        },
+        rows_counter: { text: 'Instances: ' },
+        btn_reset: { text: 'Clear' },
+        responsive: true,
+        loader: true,
+        no_results_message: true,
 
-      // columns data types
-      col_types: [
-        'string',
-        'string',
-        'string',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number',
-        'formatted-number'
-      ],
-      extensions: [{ name: 'sort' }]
-    };
-    var tf = new TableFilter('instances', filtersConfig);
-    tf.init();
+        // columns data types
+        col_types: [
+          'string',
+          'string',
+          'string',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number',
+          'formatted-number'
+        ],
+        extensions: [{ name: 'sort' }]
+      };
+      var tf = new TableFilter('instances', filtersConfig);
+      tf.init();
     }
     async function fetchJsonFile() {
       const table_content = new DocumentFragment();
@@ -95,13 +95,13 @@ title: CIBOLib Browse Instances
       for (instancename in content) {
         const elem = document.createElement('tr');
         const instance = content[instancename];
-        for (key in instance) {
-          if (key != "llNumVariablesWithLB" && key != "llNumVariablesWithUB" && key != "linkVariablesMinLB" && key != "linkVariablesMaxUB") {
-            const value = document.createElement('td');
-            value.append(instance[key]);
-            //console.log(instance[key])
-            elem.appendChild(value);
-          }
+        var col_names = ["Instance", "Type", "Class", "ulNumVariables", "ulNumIntVariables",
+          "ulNumBinVariables", "llNumVariables", "llNumIntVariables", "llNumBinVariables",
+          "linkNumVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
+        for (key of col_names) {
+          const value = document.createElement('td');
+          value.append(instance[key]);
+          elem.appendChild(value);
         }
         instances_content.appendChild(elem);
       }
@@ -112,6 +112,6 @@ title: CIBOLib Browse Instances
   </script>
 
   <script data-config="">
-    
+
   </script>
 </div><!-- /.blurb -->
