@@ -95,9 +95,17 @@ title: CIBOLib Browse Instances
       for (instancename in content) {
         const elem = document.createElement('tr');
         const instance = content[instancename];
-        var col_names = ["Instance", "Type", "Class", "ulNumVariables", "ulNumIntVariables",
+        var col_names = ["Type", "Class", "ulNumVariables", "ulNumIntVariables",
           "ulNumBinVariables", "llNumVariables", "llNumIntVariables", "llNumBinVariables",
           "linkNumVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
+        const name=document.createElement("td");
+        const childHref=document.createElement("a");
+        var address=instance["Path"]+"/"+instance["Instance"]+".json";
+        childHref.append(instance["Instance"]);
+        childHref.setAttribute("href", address);
+        name.appendChild(childHref);
+        elem.appendChild(name);
+
         for (key of col_names) {
           const value = document.createElement('td');
           value.append(instance[key]);

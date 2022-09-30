@@ -9,14 +9,15 @@ from subprocess import Popen
 
 
 def addToJson(json_str, infos: dict):
-    json_file=open(json_str,"r")
-    default_dict=json.load(json_file)
+    json_file = open(json_str, "r")
+    default_dict = json.load(json_file)
     json_file.close()
-    json_file=open(json_str,"w")
+    json_file = open(json_str, "w")
     infos.update(default_dict)
     json.dump(infos, json_file)
     json_file.close()
     return infos
+
 
 def initializeJson(instance: str, folder: str, collection_home: str, jsons_home: str):
 
@@ -36,7 +37,7 @@ def initializeJson(instance: str, folder: str, collection_home: str, jsons_home:
 
 
 def create_default_jsons(collection_home: str, jsons_home: str):
-    complete_dictionary:dict={}
+    complete_dictionary: dict = {}
     for folder, _, instances in os.walk(collection_home, topdown=True):
         for instance in instances:
             if instance.endswith(".aux"):
@@ -49,18 +50,17 @@ def create_default_jsons(collection_home: str, jsons_home: str):
                 class_information = class_type_folder[0]
                 type_information = class_type_folder[1]
 
-                dictionary_of_instance=addToJson(instanceJson, {
-                          "Instance": instance_without_extension,"Type": type_information, "Class": class_information })
-                complete_dictionary[instance_without_extension]=dictionary_of_instance
+                dictionary_of_instance = addToJson(instanceJson, {
+                    "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
+                    "Path": str("https://cibolib.github.io/jsons/collection/mip-mip/"+folder[len(collection_home+"mip-mip/"):])})
+                complete_dictionary[instance_without_extension] = dictionary_of_instance
     return complete_dictionary
-
 
 
 if __name__ == "__main__":
     collection_home = input("Path: .../collection/ ")
     jsons_home = input("Path for initialized jsons ")
-    complete_dictionary=create_default_jsons(collection_home, jsons_home)
-    json_file=open(jsons_home+"all_instances.json","w")
+    complete_dictionary = create_default_jsons(collection_home, jsons_home)
+    json_file = open(jsons_home+"all_instances.json", "w")
     json.dump(complete_dictionary, json_file)
     json_file.close()
-
