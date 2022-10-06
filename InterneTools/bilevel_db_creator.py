@@ -6,15 +6,15 @@ Created on 17.09.2022
 import json
 import os
 from subprocess import Popen
-
+from json2html import *
 
 def addToJson(json_str, infos: dict):
     json_file = open(json_str, "r")
     default_dict = json.load(json_file)
+    infos.update(default_dict)
     json_file.close()
     json_file = open(json_str, "w")
-    infos.update(default_dict)
-    json.dump(infos, json_file)
+    json_file.write(json2html.convert(json = infos))
     json_file.close()
     return infos
 
@@ -27,7 +27,7 @@ def initializeJson(instance: str, folder: str, collection_home: str, jsons_home:
     # make the directories if they do not exists and get the new path for the json which will be created by the stats_writer
     instanceJson = jsons_home+folder[len(collection_home):]
     os.makedirs(instanceJson, exist_ok=True)
-    instanceJson += "/"+instance_without_extension+".json"
+    instanceJson += "/"+instance_without_extension+".html"
 
     # let the stats_writer initialize the json of the current instance
     process = Popen(["./stats_writer", "-i", folder+"/" +

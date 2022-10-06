@@ -100,7 +100,7 @@ title: CIBOLib Browse Instances
           "linkNumVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
         const name=document.createElement("td");
         const childHref=document.createElement("a");
-        var address=instance["Path"]+"/"+instance["Instance"]+".json";
+        var address=instance["Path"]+"/"+instance["Instance"]+".html";
         childHref.append(instance["Instance"]);
         childHref.setAttribute("href", address);
         name.appendChild(childHref);
