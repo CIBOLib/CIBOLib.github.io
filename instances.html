@@ -85,7 +85,7 @@ title: CIBOLib Browse Instances
     }
     async function fetchJsonFile() {
       const table_content = new DocumentFragment();
-      let jsonFile = await fetch('htmls/collection/all_instances.json');
+      let jsonFile = await fetch('htmls/all_instances.json');
       let content = await jsonFile.json();
       return content;
     }
@@ -100,7 +100,7 @@ title: CIBOLib Browse Instances
           "linkNumVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
         const name=document.createElement("td");
         const childHref=document.createElement("a");
-        var address=instance["Path"]+"/"+instance["Instance"]+".html";
+        var address=instance["Path"];
         childHref.append(instance["Instance"]);
         childHref.setAttribute("href", address);
         name.appendChild(childHref);
