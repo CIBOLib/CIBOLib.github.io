@@ -16,7 +16,7 @@ def addToHtml(json_str: str, infos: dict):
     infos.update(default_dict)
     page_file.close()
     page_file = open(json_str, "w")
-    page_file.write("---\nlayout: ../default\ntitle: CIBOLib Instance"+infos["Instance"]+"\n---")
+    page_file.write("---\nlayout: default\ntitle: CIBOLib Instance "+infos["Instance"]+"\n---")
 
     page_file.write(json2html.convert(json=infos))
     page_file.close()
@@ -53,7 +53,6 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
         # create big json and htmls
         for instance in instances:
             if instance.endswith(".aux"):
-                print(instance)
                 instanceHtml, instance_without_extension = initializeHtml(
                     instance, folder, collection_home, htmls_home)
 
@@ -65,7 +64,7 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
 
                 dictionary_of_instance = addToHtml(instanceHtml, {
                     "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
-                    "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+"./html"),
+                    "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+".html"),
                     "Folder":folder[len(collection_home):]})
                 complete_dictionary[instance_without_extension] = dictionary_of_instance
     return complete_dictionary
