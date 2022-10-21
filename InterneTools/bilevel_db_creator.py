@@ -3,21 +3,23 @@ Created on 17.09.2022
 
 @author: michelle
 '''
-from bz2 import compress
 import json
 import os
 import tarfile
 from subprocess import Popen
 from json2html import *
 
-def addToHtml(json_str, infos: dict):
-    json_file = open(json_str, "r")
-    default_dict = json.load(json_file)
+
+def addToHtml(json_str: str, infos: dict):
+    page_file = open(json_str, "r")
+    default_dict = json.load(page_file)
     infos.update(default_dict)
-    json_file.close()
-    json_file = open(json_str, "w")
-    json_file.write(json2html.convert(json = infos))
-    json_file.close()
+    page_file.close()
+    page_file = open(json_str, "w")
+    page_file.write("---\nlayout: default\ntitle: CIBOLib Instance"+infos["Instance"]+"\n---")
+
+    page_file.write(json2html.convert(json=infos))
+    page_file.close()
     return infos
 
 
@@ -38,17 +40,18 @@ def initializeHtml(instance: str, folder: str, collection_home: str, htmls_home:
     return instanceHtml, instance_without_extension
 
 
-def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archives_home:str):
+def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archives_home: str):
     complete_dictionary: dict = {}
     os.makedirs(archives_home+"archives", exist_ok=True)
     for folder, _, instances in os.walk(collection_home, topdown=True):
-        #compress
-        if ".git" in folder or folder in collection_home: #git raus und collection_home raus
-            continue;
-        tar = tarfile.open(archives_home+"archives/"+os.path.basename(folder)+".tar.gz", "w:gz")
+        # compress
+        if ".git" in folder or folder in collection_home:  # git raus und collection_home raus
+            continue
+        tar = tarfile.open(archives_home+"archives/" +
+                           os.path.basename(folder)+".tar.gz", "w:gz")
         tar.add(folder)
         tar.close()
-        #create big json and htmls
+        # create big json and htmls
         for instance in instances:
             if instance.endswith(".aux"):
                 instanceHtml, instance_without_extension = initializeHtml(
@@ -70,8 +73,9 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
 if __name__ == "__main__":
     collection_home = input("Path: .../collection/ ")
     htmls_home = input("Path for initialized htmls ")
-    archives_home=input("Path for tar.gz ")
-    complete_dictionary = create_htmls_json_andCompress(collection_home, htmls_home,archives_home)
+    archives_home = input("Path for tar.gz ")
+    complete_dictionary = create_htmls_json_andCompress(
+        collection_home, htmls_home, archives_home)
     json_file = open(htmls_home+"all_instances.json", "w")
     json.dump(complete_dictionary, json_file)
     json_file.close()

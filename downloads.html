@@ -31,3 +31,18 @@ title: CIBOLib Downloads
     <li>statistics files</li>
   </ul>
 </div><!-- /.blurb -->
+
+<script>
+
+var request = new XMLHttpRequest();
+async function blah(){
+      var a = document.createElement("a");
+      a.href = "https://github.com/mimamer/zipTest/blob/master/einText.txt.tar.gz?raw=true";
+      a.target= "_blank";
+      a.download = "FILENAME";
+      a.click();
+}
+</script>
+<button type="button"
+onclick="blah()">
+Testbutton</button>
