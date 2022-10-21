@@ -8,7 +8,7 @@ import os
 import tarfile
 from subprocess import Popen
 from json2html import *
-import shutil
+#import shutil
 
 
 def addToHtml(json_str: str, infos: dict):
@@ -39,13 +39,13 @@ def initializeHtml(instance: str, folder: str, collection_home: str, htmls_home:
     return instanceHtml, instance_without_extension
 
 
-def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archives_home: str, layout_home:str):
+def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archives_home: str):#, layout_home:str):
     complete_dictionary: dict = {}
-    os.makedirs(archives_home+"archives", exist_ok=True)
-    os.makedirs(htmls_home+"/_layouts", exist_ok=True)
-    src_path = layout_home+"_layouts/default.html"
-    dst_path = htmls_home+"/_layouts/default.html"
-    shutil.copy(src_path, dst_path)
+    #os.makedirs(archives_home+"archives", exist_ok=True), since repo ...
+    os.makedirs(htmls_home, exist_ok=True)
+    #src_path = layout_home+"_layouts/default.html" # automatisch uebernehmen?
+    #dst_path = htmls_home+"/_layouts/default.html"
+    #shutil.copy(src_path, dst_path)
 
     for folder, _, instances in os.walk(collection_home, topdown=True):
         # compress
@@ -80,9 +80,11 @@ if __name__ == "__main__":
     collection_home = input("Path: .../collection/ ")
     htmls_home = input("Path for initialized htmls ")
     archives_home = input("Path for tar.gz ")
-    layout_home = input("Path for layout ")
+    #layout_home = input("Path for layout ")
     complete_dictionary = create_htmls_json_andCompress(
-        collection_home, htmls_home, archives_home,layout_home)
+        collection_home, htmls_home, archives_home)
+    #complete_dictionary = create_htmls_json_andCompress(
+    #    collection_home, htmls_home, archives_home,layout_home)
     json_file = open(htmls_home+"/all_instances.json", "w")
     json.dump(complete_dictionary, json_file)
     json_file.close()
