@@ -54,7 +54,7 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
         if True:  # muss nicht immer laufen, wenn ich an den Unterseiten arbeite
             tar = tarfile.open(archives_home+"archives/" +
                                os.path.basename(folder)+".tar.gz", "w:gz")
-            tar.add(folder)
+            tar.add(folder,arcname=os.path.basename(folder))
             tar.close()
         # create big json and htmls
         for instance in instances:
