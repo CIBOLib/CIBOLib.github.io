@@ -1,6 +1,5 @@
 '''
 Created on 17.09.2022
-
 @author: michelle
 '''
 import json
@@ -11,7 +10,7 @@ from json2html import *
 #import shutil
 
 
-def addToHtml(json_str: str, infos: dict):
+def add_To_Html(json_str: str, infos: dict):
     page_file = open(json_str, "r")
     default_dict = json.load(page_file)
     infos.update(default_dict)
@@ -25,7 +24,7 @@ def addToHtml(json_str: str, infos: dict):
     return infos
 
 
-def initializeHtml(instance: str, folder: str, collection_home: str, htmls_home: str):
+def initialize_Html(instance: str, folder: str, collection_home: str, htmls_home: str):
 
     # get the name of the instance
     instance_without_extension = instance[:-len(".aux")]
@@ -39,7 +38,7 @@ def initializeHtml(instance: str, folder: str, collection_home: str, htmls_home:
     return instanceHtml, instance_without_extension
 
 
-def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archives_home: str):#, layout_home:str):
+def create_htmls_json_and_Compress(collection_home: str, htmls_home: str, archives_home: str, compress=False):#, layout_home:str):
     complete_dictionary: dict = {}
     #os.makedirs(archives_home+"archives", exist_ok=True), since repo ...
     os.makedirs(htmls_home, exist_ok=True)
@@ -48,10 +47,10 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
     #shutil.copy(src_path, dst_path)
 
     for folder, _, instances in os.walk(collection_home, topdown=True):
-        # compress
-        if ".git" in folder or folder in collection_home:  # git raus und collection_home raus
+        # compress, less than all, maybe better in a seperate loop?
+        if ".git" in folder or folder in collection_home:  
             continue
-        if True:  # muss nicht immer laufen, wenn ich an den Unterseiten arbeite
+        if compress and not any((".aux" in instance or ".mps" in instance for instance in instances)):  # optional
             tar = tarfile.open(archives_home+"archives/" +
                                os.path.basename(folder)+".tar.gz", "w:gz")
             tar.add(folder,arcname=os.path.basename(folder))
@@ -59,7 +58,7 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
         # create big json and htmls
         for instance in instances:
             if instance.endswith(".aux"):
-                instanceHtml, instance_without_extension = initializeHtml(
+                instanceHtml, instance_without_extension = initialize_Html(
                     instance, folder, collection_home, htmls_home)
 
                 # string which includes further default informations
@@ -68,7 +67,7 @@ def create_htmls_json_andCompress(collection_home: str, htmls_home: str, archive
                 class_information = class_type_folder[0]
                 type_information = class_type_folder[1]
 
-                dictionary_of_instance = addToHtml(instanceHtml, {
+                dictionary_of_instance = add_To_Html(instanceHtml, {
                     "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
                     "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+".html"),
                     "Folder": folder[len(collection_home):]})
@@ -81,8 +80,8 @@ if __name__ == "__main__":
     htmls_home = input("Path for initialized htmls ")
     archives_home = input("Path for tar.gz ")
     #layout_home = input("Path for layout ")
-    complete_dictionary = create_htmls_json_andCompress(
-        collection_home, htmls_home, archives_home)
+    complete_dictionary = create_htmls_json_and_Compress(
+        collection_home, htmls_home, archives_home, True)
     #complete_dictionary = create_htmls_json_andCompress(
     #    collection_home, htmls_home, archives_home,layout_home)
     json_file = open(htmls_home+"/all_instances.json", "w")
