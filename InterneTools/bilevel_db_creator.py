@@ -7,15 +7,15 @@ import os
 import tarfile
 from subprocess import Popen
 from json2html import *
-#import shutil
+import shutil
 
 
-def add_To_Html(json_str: str, infos: dict):
-    page_file = open(json_str, "r")
+def add_To_Html(json_path: str, infos: dict):
+    page_file = open(json_path, "r")
     default_dict = json.load(page_file)
     infos.update(default_dict)
     page_file.close()
-    page_file = open(json_str, "w")
+    page_file = open(json_path, "w")
     page_file.write(
         "---\nlayout: default\ntitle: CIBOLib Instance "+infos["Instance"]+"\n---\n")
 
@@ -38,22 +38,42 @@ def initialize_Html(instance: str, folder: str, collection_home: str, htmls_home
     return instanceHtml, instance_without_extension
 
 
-def create_htmls_json_and_Compress(collection_home: str, htmls_home: str, archives_home: str, compress=False):#, layout_home:str):
-    complete_dictionary: dict = {}
-    #os.makedirs(archives_home+"archives", exist_ok=True), since repo ...
+def make_dirs(htmls_home: str, archives_home: str, compress):
+
+    if compress:
+        os.makedirs(archives_home, exist_ok=True)
     os.makedirs(htmls_home, exist_ok=True)
-    #src_path = layout_home+"_layouts/default.html" # automatisch uebernehmen?
-    #dst_path = htmls_home+"/_layouts/default.html"
-    #shutil.copy(src_path, dst_path)
+    os.makedirs(htmls_home+"/_layouts", exist_ok=True)
+    os.makedirs(htmls_home+"/css", exist_ok=True)
+
+
+def copy_design_files(htmls_home: str, layout_home: str, css_home: str):
+
+    dst_layout_path = htmls_home+"/_layouts/default.html"
+    shutil.copy(layout_home, dst_layout_path)
+
+    dst_css_path = htmls_home+"/css/main.css"
+    shutil.copy(css_home, dst_css_path)
+
+
+def create_htmls_json_and_Compress(collection_home: str, htmls_home: str, archives_home: str, layout_home: str, css_home: str, compress=False):
+    collection_home += "/"
+
+    make_dirs(htmls_home, archives_home, compress)
+    copy_design_files(htmls_home, layout_home, css_home)
+
+    complete_dictionary: dict = {}
 
     for folder, _, instances in os.walk(collection_home, topdown=True):
         # compress, less than all, maybe better in a seperate loop?
-        if ".git" in folder or folder in collection_home:  
+        if ".git" in folder or folder in collection_home:
             continue
-        if compress and not any((".aux" in instance or ".mps" in instance for instance in instances)):  # optional
-            tar = tarfile.open(archives_home+"archives/" +
+        # compress not MIPLIB... etc.
+        if compress and not any((".aux" in instance or ".mps" in instance for instance in instances)):
+            print("Compress " + os.path.basename(folder) + ".")
+            tar = tarfile.open(archives_home + "/" +
                                os.path.basename(folder)+".tar.gz", "w:gz")
-            tar.add(folder,arcname=os.path.basename(folder))
+            tar.add(folder, arcname=os.path.basename(folder))
             tar.close()
         # create big json and htmls
         for instance in instances:
@@ -71,19 +91,28 @@ def create_htmls_json_and_Compress(collection_home: str, htmls_home: str, archiv
                     "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
                     "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+".html"),
                     "Folder": folder[len(collection_home):]})
+
                 complete_dictionary[instance_without_extension] = dictionary_of_instance
+
     return complete_dictionary
 
 
-if __name__ == "__main__":
-    collection_home = input("Path: .../collection/ ")
-    htmls_home = input("Path for initialized htmls ")
-    archives_home = input("Path for tar.gz ")
-    #layout_home = input("Path for layout ")
-    complete_dictionary = create_htmls_json_and_Compress(
-        collection_home, htmls_home, archives_home, True)
-    #complete_dictionary = create_htmls_json_andCompress(
-    #    collection_home, htmls_home, archives_home,layout_home)
+def write_big_json(htmls_home:str,complete_dictionary: dict):
     json_file = open(htmls_home+"/all_instances.json", "w")
     json.dump(complete_dictionary, json_file)
     json_file.close()
+
+
+if __name__ == "__main__":
+
+    config_path = input("Path of config.json (skip if you did not change its location):")
+    if len(config_path) == 0:
+        config_path = "./config.json"
+    config_file = open(config_path, "r")
+    config_dict = json.load(config_file)
+    
+    complete_dictionary = create_htmls_json_and_Compress(
+        config_dict["collection_home"], config_dict["htmls_home"], config_dict["archives_home"],
+        config_dict["layout_home"], config_dict["css_home"], config_dict["compress"])
+
+    write_big_json(config_dict["htmls_home"],complete_dictionary)
