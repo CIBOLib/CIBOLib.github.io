@@ -1,6 +1,6 @@
 '''
 Created on 17.09.2022
-@author: michelle
+@author: Michelle Mergen
 '''
 import json
 import os
@@ -8,7 +8,6 @@ import tarfile
 from subprocess import Popen
 from json2html import *
 import shutil
-
 
 def add_To_Html(json_path: str, infos: dict):
     page_file = open(json_path, "r")
@@ -26,16 +25,14 @@ def add_To_Html(json_path: str, infos: dict):
 
 def initialize_Html(instance: str, folder: str, collection_home: str, htmls_home: str):
 
-    # get the name of the instance
     instance_without_extension = instance[:-len(".aux")]
-    # where to store html in the end
-    instanceHtml = htmls_home + "/"+instance_without_extension+".html"
+    instance_store_html = htmls_home + "/"+instance_without_extension+".html"
 
     # let the stats_writer initialize the json of the current instance -> json will change to html
     process = Popen(["./stats_writer", "-i", folder+"/" +
-                    instance_without_extension, "-c", instanceHtml])
+                    instance_without_extension, "-c", instance_store_html])
     exit_code = process.wait()
-    return instanceHtml, instance_without_extension
+    return instance_store_html, instance_without_extension
 
 
 def make_dirs(htmls_home: str, archives_home: str, compress):
@@ -55,42 +52,47 @@ def copy_design_files(htmls_home: str, layout_home: str, css_home: str):
     dst_css_path = htmls_home+"/css/main.css"
     shutil.copy(css_home, dst_css_path)
 
+def compress_to_tarball(folder:str, archives_home:str):
+    print("Compress " + os.path.basename(folder) + ".")
+    tar = tarfile.open(config_dict["archives_home"] + "/" +
+                        os.path.basename(folder)+".tar.gz", "w:gz")
+    tar.add(folder, arcname=os.path.basename(folder))
+    tar.close()
 
-def create_htmls_json_and_Compress(collection_home: str, htmls_home: str, archives_home: str, layout_home: str, css_home: str, compress=False):
-    collection_home += "/"
 
-    make_dirs(htmls_home, archives_home, compress)
-    copy_design_files(htmls_home, layout_home, css_home)
+def create_htmls_json_and_Compress(config_dict:dict):
+
+    config_dict["collection_home"] += "/"
+
+    make_dirs(config_dict["htmls_home"], config_dict["archives_home"], config_dict["compress"])
+    copy_design_files(config_dict["htmls_home"], config_dict["layout_home"], config_dict["css_home"])
 
     complete_dictionary: dict = {}
 
-    for folder, _, instances in os.walk(collection_home, topdown=True):
-        # compress, less than all, maybe better in a seperate loop?
-        if ".git" in folder or folder in collection_home:
+    for folder, _, instances in os.walk(config_dict["collection_home"], topdown=True):
+        # compress, less than all
+        if ".git" in folder or folder in config_dict["collection_home"]:
             continue
-        # compress not MIPLIB... etc.
-        if compress and not any((".aux" in instance or ".mps" in instance for instance in instances)):
-            print("Compress " + os.path.basename(folder) + ".")
-            tar = tarfile.open(archives_home + "/" +
-                               os.path.basename(folder)+".tar.gz", "w:gz")
-            tar.add(folder, arcname=os.path.basename(folder))
-            tar.close()
+        # do not compress MIPLIB... etc.
+        if config_dict["compress"] and not any((".aux" in instance or ".mps" in instance for instance in instances)):
+            compress_to_tarball(folder, config_dict["archives_home"])
+            
         # create big json and htmls
         for instance in instances:
             if instance.endswith(".aux"):
                 instanceHtml, instance_without_extension = initialize_Html(
-                    instance, folder, collection_home, htmls_home)
+                    instance, folder, config_dict["collection_home"], config_dict["htmls_home"])
 
                 # string which includes further default informations
                 class_type_folder = folder[len(
-                    collection_home+"mip-mip/"):].split("/")
+                    config_dict["collection_home"]+"mip-mip/"):].split("/")
                 class_information = class_type_folder[0]
                 type_information = class_type_folder[1]
 
                 dictionary_of_instance = add_To_Html(instanceHtml, {
                     "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
                     "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+".html"),
-                    "Folder": folder[len(collection_home):]})
+                    "Folder": folder[len(config_dict["collection_home"]):]})
 
                 complete_dictionary[instance_without_extension] = dictionary_of_instance
 
@@ -111,8 +113,6 @@ if __name__ == "__main__":
     config_file = open(config_path, "r")
     config_dict = json.load(config_file)
     
-    complete_dictionary = create_htmls_json_and_Compress(
-        config_dict["collection_home"], config_dict["htmls_home"], config_dict["archives_home"],
-        config_dict["layout_home"], config_dict["css_home"], config_dict["compress"])
+    complete_dictionary = create_htmls_json_and_Compress(config_dict)
 
     write_big_json(config_dict["htmls_home"],complete_dictionary)
