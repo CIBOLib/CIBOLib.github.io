@@ -1,6 +1,6 @@
-#Usage: todo
+# Usage: todo
 
-#Validity:
+# Validity:
 
 The following grep queries in the collection folder must not return anything in the future, so that the conversion of E-constraints into G- and L-contraints by the provided Python script 'equality_termintor.py' is valid:
 
@@ -15,11 +15,11 @@ RHS
 BOUNDS
 ENDATA
 
-#Assumptions:
+# Assumptions:
 
 Read more about the mps format: http://cgm.cs.mcgill.ca/~avis/courses/567/cplex/reffileformatscplex.pdf
 
-##1) 
+## 1) 
 
 On page 14 in this pdf we have a very interesting part: 
 "For example, since ILOG CPLEX no longer requires fixed columnar positions, blank spaces are interpreted as delimiters. 
@@ -29,7 +29,7 @@ Therefore in older mps files a contraint or variable could have a blank included
 
 However I do not expect this to be the case in any files of the collection. That is why the Python script just splits the lines.
 
-##2) 
+## 2) 
 
 On page 17:  "Several RHS vectors can exist. The name of each RHS vector appears in Field 2. However, only the first RHS vector is selected when a problem is read. 
 Additional RHS vectors are discarded." 
