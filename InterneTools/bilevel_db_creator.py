@@ -85,7 +85,7 @@ def create_htmls_json_and_Compress(config_dict:dict):
 
                 # string which includes further default informations
                 class_type_folder = folder[len(
-                    config_dict["collection_home"]+"mip-mip/"):].split("/")
+                    config_dict["collection_home"]):].split("/")
                 class_information = class_type_folder[0]
                 type_information = class_type_folder[1]
 
@@ -107,7 +107,7 @@ def write_big_json(htmls_home:str,complete_dictionary: dict):
 
 if __name__ == "__main__":
 
-    config_path = input("Path of config.json (skip if you did not change its location):")
+    config_path = input("Path of config.json (.../config.json,skip if you did not change its location):")
     if len(config_path) == 0:
         config_path = "./config.json"
     config_file = open(config_path, "r")
