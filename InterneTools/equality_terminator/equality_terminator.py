@@ -81,7 +81,7 @@ class MpsParser(ParserBase):
                 self.output(f" {column_name} {row_name} {value}")
 
         line = line.split()
-        [column_name, row_name, value] = line
+        [column_name, row_name, value] = line[:3]
         handle_value(column_name, row_name, value)
         line = line[3:]
         if len(line) > 0:
@@ -97,7 +97,7 @@ class MpsParser(ParserBase):
                 self.output(f" {self.rhs_ident} {row_name} {value}")
 
         line = line.split()
-        [rhs_name, row_name, value] = line
+        [rhs_name, row_name, value] = line[:3]
         line = line[3:]
         if self.rhs_ident != rhs_name:
             if self.rhs_ident is None:
@@ -176,7 +176,7 @@ def open_input_file(filename):
         return open(filename, 'r')
 def open_output_file(filename):
     outputfile = path.join(args.output_dir, path.basename(filename))
-    if args.gzip_output:
+    if args.gzip_output and filename.endswith(".gz"):
         import gzip
         return gzip.open(outputfile, 'wt')
     else:
@@ -195,4 +195,3 @@ for aux_file in args.aux_files:
         for line in aux_input.readlines():
             aux_parser.process_next_line(line)
         aux_parser.process_end_reached()
-
