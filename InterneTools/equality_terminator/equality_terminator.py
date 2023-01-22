@@ -4,11 +4,12 @@ import os.path as path
 arg_parser = argparse.ArgumentParser(description="decomposes equations into inequalities for mps/aux problems")
 arg_parser.add_argument('mps_file', action='store', help='the input mps file')
 arg_parser.add_argument('--aux_files', action='store', nargs='*', help='aux files that belong to the specified mps file. May be used multiple times')
-arg_parser.add_argument('--output_dir', action='store', required=True, help='A directory to write the resulting files to')
+arg_parser.add_argument('--aux_output_dir', action='store', required=True, help='A directory to write the resulting aux files to')
+arg_parser.add_argument('--mps_output_dir', action='store', required=True, help='A directory to write teh resulting mps files to')
 arg_parser.add_argument('--gzip_output', action='store_true', help="compress the output using gzip (note: this does not change the file extension)")
 
 args = arg_parser.parse_args()
-print(args)
+# print(args)
 
 class ParserBase:
     def __init__(self, outputfile):
@@ -47,7 +48,7 @@ class MpsParser(ParserBase):
             else:
                 # ensure that the function does not do anything if called again
                 self.process_next_line_inner = self.emit_line
-                self.emit_line(line)
+            self.emit_line(line)
         else:
             self.process_next_line_inner(line)
 
@@ -175,7 +176,10 @@ def open_input_file(filename):
     else:
         return open(filename, 'r')
 def open_output_file(filename):
-    outputfile = path.join(args.output_dir, path.basename(filename))
+    out_dir = args.mps_output_dir
+    if filename.endswith("aux"):
+        out_dir = args.aux_output_dir
+    outputfile = path.join(out_dir, path.basename(filename))
     if args.gzip_output and filename.endswith(".gz"):
         import gzip
         return gzip.open(outputfile, 'wt')
@@ -195,3 +199,5 @@ for aux_file in args.aux_files:
         for line in aux_input.readlines():
             aux_parser.process_next_line(line)
         aux_parser.process_end_reached()
+
+
