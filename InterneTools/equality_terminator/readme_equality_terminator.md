@@ -1,5 +1,11 @@
 # Usage: todo
 
+# Usage through equaltity_terminator_executer:
+
+python3 equality_terminator_executer --dir_path inputdir --output_dir outputdir
+
+one can use the optional parameter --max_parallel 'number' to use 'number'-many subprocesses instead of only one.
+
 # Validity:
 
 The following grep queries in the collection folder must not return anything in the future, so that the conversion of E-constraints into G- and L-contraints by the provided Python script is valid:
