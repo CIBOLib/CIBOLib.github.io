@@ -37,9 +37,7 @@ class MpsParser(ParserBase):
     def process_next_line(self, line):
         if line[0] != " ":
             next_section = line.strip()
-            if next_section.startswith("NAME"):
-                self.emit_line(line)
-            elif next_section in ["ROWS", "USERCUTS", "LAZYCONS"]:
+            if next_section in ["ROWS", "USERCUTS", "LAZYCONS"]:
                 self.process_next_line_inner = self.process_rows_line
             elif next_section == "COLUMNS":
                 self.process_next_line_inner = self.process_columns_line
