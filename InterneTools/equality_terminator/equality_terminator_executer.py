@@ -5,7 +5,7 @@ import argparse
 
 arg_parser = argparse.ArgumentParser(description="executes the equality_terminator for all files in the miplib")
 
-arg_parser.add_argument('--dir_path', action='store', required=True, help='The input directory')
+arg_parser.add_argument('--input_dir', action='store', required=True, help='The input directory')
 arg_parser.add_argument('--output_dir', action='store', required=True, help='The output directory')
 arg_parser.add_argument('--max_parallel', action='store', required=False, default=1, help='the number of commands to run in parallel')
 
@@ -16,7 +16,7 @@ args = arg_parser.parse_args()
 #print("Symbolic link points to", originalPath)
 mps_aux_dict={}
 subprocs = []
-dir_path=args.dir_path
+dir_path=args.input_dir
 
 mps_out_dir = args.output_dir
 aux_out_dir = args.output_dir
@@ -52,10 +52,12 @@ if here == "":
 
 def generate_commands():
     for mps_file in mps_aux_dict.keys():
-        command=["python3", f"{here}/equality_terminator.py", mps_file, "--mps_output_dir",
-                 mps_out_dir, "--aux_output_dir", aux_out_dir, "--gzip_output", "--aux_files"]
-        command.extend(mps_aux_dict[mps_file])
-        yield command
+        aux_files = mps_aux_dict[mps_file]
+        for aux_file in aux_files:
+            command=["python3", f"{here}/equality_terminator.py", mps_file, "--mps_output_dir",
+                     mps_out_dir, "--aux_output_dir", aux_out_dir, "--gzip_output", "--aux_files"]
+            command.extend([aux_file])
+            yield command
         # print(command)
         # subprocess.run(command)
 

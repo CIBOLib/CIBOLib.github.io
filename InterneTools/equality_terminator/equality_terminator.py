@@ -115,11 +115,13 @@ class AuxParser(ParserBase):
     buffered_lines = []
 
     buffer_emitted = False
-    lr_section_reached = False
 
     def __init__(self, outputfile, mps_parser):
         super().__init__(outputfile)
         self.mps_parser = mps_parser
+
+    def buffer_line(self, line):
+        self.buffered_lines.append(line)
 
     def process_next_line(self, line):
         [val_type, value] = line.split()
@@ -131,13 +133,7 @@ class AuxParser(ParserBase):
             self.lr_section_reached = True
             self.process_lr_value(value)
         else:
-            if self.lr_section_reached:
-                if not self.buffer_emitted:
-                    self.buffer_emitted = True
-                    self.emit_buffer()
-                self.emit_line(line)
-            else:
-                self.buffered_lines.append(line)
+            self.buffer_line(line)
 
     def process_end_reached(self):
         if not self.buffer_emitted:
