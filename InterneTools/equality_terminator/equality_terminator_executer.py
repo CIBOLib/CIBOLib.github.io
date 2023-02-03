@@ -3,7 +3,7 @@ import subprocess
 
 import argparse
 
-arg_parser = argparse.ArgumentParser(description="executes the equality_terminator for all files in the miplib")
+arg_parser = argparse.ArgumentParser(description="executes the equality_terminator for all files in the input_dir")
 
 arg_parser.add_argument('--input_dir', action='store', required=True, help='The input directory')
 arg_parser.add_argument('--output_dir', action='store', required=True, help='The output directory')
@@ -11,9 +11,6 @@ arg_parser.add_argument('--max_parallel', action='store', required=False, defaul
 
 args = arg_parser.parse_args()
 
-#link = "./MIPLIB2010/acc-tight5_100_0.mps.gz"
-#originalPath = os.readlink(link)
-#print("Symbolic link points to", originalPath)
 mps_aux_dict={}
 subprocs = []
 dir_path=args.input_dir
@@ -32,7 +29,7 @@ for aux_file in os.scandir(path=dir_path):
             if os.path.islink(mps_link):
                 mps_file=dir_path + "/" + os.readlink(mps_link)
                 folder_contains_links = True
-                subprocess.run(["cp", "-P", mps_link, aux_out_dir])
+                subprocess.run(["cp", "-P", mps_link, aux_out_dir]) #copy the symbolic link not the original mps.gz in the output_dir
             else:
                 mps_file = mps_link
             print(mps_file)
