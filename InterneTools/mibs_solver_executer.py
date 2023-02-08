@@ -35,8 +35,8 @@ for filename in os.listdir(input_dir):
             with open(output_path_without_extension+".txt", "w") as output:
 
                 command=["dist/bin/mibs", "-Alps_instance", input_path_without_extension+".mps.gz", "-MibS_auxiliaryInfoFile", input_path_without_extension+".aux", "-Alps_timeLimit", "3600"]
-                print(command)
-                #subprocess.run(command, stdout=output); #run waits until the process is finished
+                #print(command)
+                subprocess.run(command, stdout=output); #run waits until the process is finished
         counter=counter+1
         if counter > end_index:
             break
