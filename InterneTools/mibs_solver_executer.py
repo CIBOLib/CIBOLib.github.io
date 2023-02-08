@@ -24,6 +24,7 @@ counter = 0
 
 for filename in os.listdir(input_dir):
     if(filename.endswith(".aux")):
+        
         if counter >= start_index and counter <= end_index:
             filename_without_extension=filename[:-len(".aux")]
             output_path_without_extension = path.join(output_dir, filename_without_extension)
@@ -34,9 +35,10 @@ for filename in os.listdir(input_dir):
             with open(output_path_without_extension+".txt", "w") as output:
 
                 command=["dist/bin/mibs", "-Alps_instance", input_path_without_extension+".mps.gz", "-MibS_auxiliaryInfoFile", input_path_without_extension+".aux", "-Alps_timeLimit", "3600"]
-                #print(command)
-                subprocess.run(command, stdout=output); #run waits until the process is finished
-    
-    counter=counter+1
-    if counter > end_index:
+                print(command)
+                #subprocess.run(command, stdout=output); #run waits until the process is finished
+        counter=counter+1
+        if counter > end_index:
             break
+    
+    
