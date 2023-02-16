@@ -3,10 +3,10 @@ import json
 if __name__ == "__main__": 
 
     collection_home = input("Path to collection (.../collection): ")
-    htmls_home = input("Path for htmls (.../CIBOLib.github.io/htmls): ")
-    layout_home = input("complete Path to default.html (.../CIBOLib.github.io/_layouts/default.html): ")
-    css_home = input("complete Path to main.css (.../CIBOLib.github.io/css/main.css): ")
-    ask_compress=input("Do you want to compress the bilevel libraries? ['Yes' or 'yes' or 'y'| no=anything else] ")
+    htmls_home = input("Path for htmls (.../BOBILib.github.io/htmls): ")
+    layout_home = input("complete Path to default.html (.../BOBILib.github.io/_layouts/default.html): ")
+    css_home = input("complete Path to main.css (.../BOBILib.github.io/css/main.css): ")
+    ask_compress=input("Do you want to compress the collection subdirectories? ['Yes' or 'yes' or 'y'| no=anything else] ")
     compress = False
     archives_home=""
     if ask_compress=="Yes" or ask_compress=="yes" or ask_compress=="y":

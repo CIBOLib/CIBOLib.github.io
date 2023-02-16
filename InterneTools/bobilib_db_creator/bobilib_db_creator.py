@@ -16,7 +16,7 @@ def add_To_Html(json_path: str, infos: dict):
     page_file.close()
     page_file = open(json_path, "w")
     page_file.write(
-        "---\nlayout: default\ntitle: CIBOLib Instance "+infos["Instance"]+"\n---\n")
+        "---\nlayout: default\ntitle: BOBILib Instance "+infos["Instance"]+"\n---\n")
 
     page_file.write(json2html.convert(json=infos))
     page_file.close()
@@ -91,7 +91,7 @@ def create_htmls_json_and_Compress(config_dict:dict):
 
                 dictionary_of_instance = add_To_Html(instanceHtml, {
                     "Instance": instance_without_extension, "Type": type_information, "Class": class_information,
-                    "Path": str("https://cibolib.github.io/htmls/"+instance_without_extension+".html"),
+                    "Path": str("https://CIBOLib.github.io/htmls/"+instance_without_extension+".html"), #to change after move
                     "Folder": folder[len(config_dict["collection_home"]):]})
 
                 complete_dictionary[instance_without_extension] = dictionary_of_instance
