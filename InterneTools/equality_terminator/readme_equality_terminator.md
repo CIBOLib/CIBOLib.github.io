@@ -1,16 +1,15 @@
-# Usage: todo
-
-# Usage through equaltity_terminator_executer:
+# Usage of the equaltity_terminator_executer:
 
 python3 equality_terminator_executer --dir_path inputdir --output_dir outputdir
 
-one can use the optional parameter --max_parallel 'number' to use 'number'-many subprocesses instead of only one.
+The equality_terminator_executer.py uses the equality_terminator.py, so please do not remove this file.
 
 # Validity:
 
 The following grep queries in the collection folder must not return anything in the future, so that the conversion of E-constraints into G- and L-contraints by the provided Python script is valid:
 
 grep -r 'INDICATORS' .
+
 grep -r 'REFROW' .
 
 The reason is that for efficiency reasons not the whole mps is parsed but only to the NAME ROWS, (optional: USERCUTS, LAZYCONS) COLUMNS and RHS section. In a usual mps we have following sections:
@@ -42,13 +41,3 @@ On page 17:  "Several RHS vectors can exist. The name of each RHS vector appears
 Additional RHS vectors are discarded." 
 
 Therefore the script discards every other rhs with anonther RHS identifier than the first one. I assume this may lead to smaller or equal sized results without changing the actual semantic of the mps.
-
-## 3)
-
-regarding the aux file: I assume that the sections are contiguous. 
-Example: 
-LR 1
-LO 4
-LR 2
-
-would result in a not valid aux file.
