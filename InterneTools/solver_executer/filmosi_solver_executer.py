@@ -6,7 +6,7 @@ import os
 import os.path as path
 import argparse
 
-arg_parser = argparse.ArgumentParser(description="executes the equality_terminator for all files in the input_dir")
+arg_parser = argparse.ArgumentParser(description="executes the filmosi (Fischetti, Ljubic, Monaci and Sinnl) solver for all files in the input_dir")
 arg_parser.add_argument('--input_dir', action='store', required=True, help='The input directory')
 arg_parser.add_argument('--output_dir', action='store', required=True, help='The output directory')
 arg_parser.add_argument('--start_index', action='store', required=True, help='Index of instance list we begin with')
@@ -37,8 +37,10 @@ for filename in os.listdir(input_dir):
             filename_without_extension=filename[:-len(".aux")]
             output_path_without_extension = path.join(output_dir, filename_without_extension)
             input_path_without_extension = path.join(input_dir, filename_without_extension)
+
             print("Solve instance number", counter, "with name", filename_without_extension)
-            with open(output_path_without_extension+".txt", "w") as output:
+
+            with open(output_path_without_extension+".filmosi.log", "w") as output:
                 command=["./bilevel", "-mpsfile", input_path_without_extension+".mps.gz", "-auxfile", input_path_without_extension+".aux", "-time_limit", "3600"]
                 #print(command)
                 subprocess.run(command, stdout=output); #run waits until the process is finished
