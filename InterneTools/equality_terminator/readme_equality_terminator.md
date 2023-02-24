@@ -1,6 +1,6 @@
 # Usage of the equaltity_terminator_executer:
 
-python3 equality_terminator_executer --dir_path inputdir --output_dir outputdir
+python3 equality_terminator_executer.py --input_dir inputdir --output_dir outputdir
 
 The equality_terminator_executer.py uses the equality_terminator.py, so please do not remove this file.
 

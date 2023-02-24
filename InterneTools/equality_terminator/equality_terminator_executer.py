@@ -7,7 +7,7 @@ arg_parser = argparse.ArgumentParser(description="executes the equality_terminat
 
 arg_parser.add_argument('--input_dir', action='store', required=True, help='The input directory')
 arg_parser.add_argument('--output_dir', action='store', required=True, help='The output directory')
-arg_parser.add_argument('--max_parallel', action='store', required=False, default=1, help='the number of commands to run in parallel')
+arg_parser.add_argument('--max_parallel', action='store', required=False, default=1, help='the number of commands to run in parallel')#has to be 1, have to delete this option
 
 args = arg_parser.parse_args()
 

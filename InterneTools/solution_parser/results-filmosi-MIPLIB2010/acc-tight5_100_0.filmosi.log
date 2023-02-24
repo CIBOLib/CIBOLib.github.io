@@ -1,0 +1,401 @@
+License for 'CIBOL Team' expires on Tue Aug  9 02:00:00 2039
+ 
+../bilevel -mpsfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.mps.gz -auxfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.aux -time_limit 3600 
+... using custom setting 4
+The chosen setting is MIX++
+
+
+available parameters --------------------------------------------------
+-mpsfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.mps.gz (the input file, part 1, needs to end with .mps; see readme.md for details on the format)
+-auxfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.aux (the input file, part 2, needs to end with .aux; only needs to be given if differently named as the mps-file)
+-time_limit, 3600 (in seconds, default: 3600)
+-available_memory, 12000 (in MB, default: 12000)
+-nodefile . (location for CPLEX nodefile to be used if available_memory is exhausted, default: current directory)
+-num_threads, 0 (0: all available (default); note: opportunistic mode of CPLEX, to change see next option)
+-randomseed, 0 (negative seed turns on deterministic multithread mode of CPLEX, default: 0)
+-node_limit, -1 (-1: no limit (default))
+-cplex_cuts, 1 (0: off, 1: normal (default), 2: moderate, 3: aggressive)
+-print_sol, 1 (0: no, 1: print nonzero entries of the final solution (default), 2: print also the zero entries)
+-setting, 4 (see below for description, default: MIX++)
+ ----------------------------------------------------------------------------------------------
+
+AVAILABLE SETTINGS------------------------------------------------------------------------------
+1 SEP1++
+2 SEP2++
+3 XU++
+4 MIX++
+21 SEP1+F
+22 SEP2+F
+23 XU+F
+24 MIX+F
+31 SEP1+P
+32 SEP2+P
+33 XU+P
+34 MIX+P
+41 SEP1
+42 SEP2
+43 XU
+44 MIX
+98 HC
+99 HC++
+----------------------------------------------------------------------------------------------
+
+ ... Cplex in opportunistic mode with 24 thread(s)
+Selected objective sense:  MINIMIZE
+Selected objective  name:  r_0
+Selected RHS        name:  RHS
+Selected bound      name:  BND
+HPR has 1339 cols
+Original HPR has 3052 rows
+Updated HPR has 3052 rows
+Follower variables integer 1 binary 1
+Leader variables integer 1 binary 1
+Problem variables integer 1 binary 1
+Body has 1 rows 
+Leader objective all integer (var+coeff?) 1
+Follower objective all integer (var+coeff?) 1
+Leader all integer (obj+cons+var?) 1
+Follower all integer (obj+cons+var?) 1
+Leader has 670 cols
+Leader has 3052 rows
+Follower has 669 cols
+Follower has 0 rows
+
+
+
+ -------------- PROBLEM STATISTICS for /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.mps.gz 
+      master   with     0 integer and  1339 binary variables (out of  1339 var.s) and  3053 constr.s
+      follower with     0 integer and   669 binary variables (out of  1339 var.s) and     0 constr.s
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_TimeLimit                               3599.9661345048808
+CPXPARAM_Preprocessing_Reduce                    0
+CPXPARAM_Preprocessing_Linear                    0
+CPXPARAM_WorkMem                                 12000
+CPXPARAM_Threads                                 24
+CPXPARAM_Parallel                                -1
+CPXPARAM_MIP_Tolerances_MIPGap                   1.0000000000000001e-09
+CPXPARAM_MIP_Tolerances_Integrality              0
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Strategy_File                       3
+CPXPARAM_MIP_Limits_Nodes                        0
+CPXPARAM_MIP_Strategy_StartAlgorithm             6
+CPXPARAM_MIP_Strategy_VariableSelect             3
+CPXPARAM_MIP_Strategy_HeuristicFreq              -1
+CPXPARAM_MIP_Strategy_Probe                      3
+CPXPARAM_MIP_Strategy_CallbackReducedLP          0
+CPXPARAM_MIP_Strategy_RINSHeur                   -1
+Warning: Control callbacks may disable some MIP features.
+Probing fixed 185 vars, tightened 0 bounds.
+Probing time = 0.05 sec. (9.41 ticks)
+Cover probing fixed 0 vars, tightened 9 bounds.
+Clique table members: 4024.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: traditional branch-and-cut.
+Parallel mode: opportunistic, using up to 24 threads.
+Parallel mode: opportunistic, using up to 24 threads for concurrent optimization.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =             0.000000
+Perturbation started.
+Iteration:   101   Dual objective     =             0.000000
+Iteration:   239   Dual objective     =             0.000019
+Iteration:   371   Dual objective     =             0.000029
+Iteration:   485   Dual objective     =             0.000035
+Iteration:   581   Dual objective     =             0.000039
+Iteration:   657   Dual objective     =             0.000042
+Iteration:   733   Dual objective     =             0.000045
+Iteration:   809   Dual objective     =             0.000049
+Iteration:   880   Dual objective     =             0.000052
+Iteration:   952   Dual objective     =             0.000055
+Iteration:  1021   Dual objective     =             0.000058
+Iteration:  1089   Dual objective     =             0.000062
+Iteration:  1158   Dual objective     =             0.000065
+Iteration:  1229   Dual objective     =             0.000068
+Iteration:  1296   Dual objective     =             0.000072
+Iteration:  1368   Dual objective     =             0.000075
+Iteration:  1437   Dual objective     =             0.000077
+Iteration:  1502   Dual objective     =             0.000080
+Iteration:  1574   Dual objective     =             0.000083
+Iteration:  1643   Dual objective     =             0.000085
+Iteration:  1707   Dual objective     =             0.000087
+Iteration:  1774   Dual objective     =             0.000091
+Iteration:  1840   Dual objective     =             0.000093
+Iteration:  1908   Dual objective     =             0.000096
+Iteration:  1974   Dual objective     =             0.000099
+Iteration:  2041   Dual objective     =             0.000102
+Iteration:  2109   Dual objective     =             0.000104
+Iteration:  2184   Dual objective     =             0.000108
+Iteration:  2253   Dual objective     =             0.000111
+Iteration:  2323   Dual objective     =             0.000113
+Iteration:  2390   Dual objective     =             0.000115
+Iteration:  2457   Dual objective     =             0.000116
+Iteration:  2527   Dual objective     =             0.000117
+Iteration:  2598   Dual objective     =             0.000118
+Iteration:  2671   Dual objective     =             0.000119
+Iteration:  2742   Dual objective     =             0.000119
+Iteration:  2820   Dual objective     =             0.000120
+Removing perturbation.
+Reinitializing dual norms . . .
+
+Dual simplex solved model.
+
+Root relaxation solution time = 1.04 sec. (457.13 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0        0.0000   569                      0.0000     2895         
+      0     0        0.0000   466                Cliques: 184     4305         
+      0     0        0.0000   478                   Cuts: 201     5298         
+
+Clique cuts applied:  278
+Zero-half cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    4.22 sec. (3712.22 ticks)
+Parallel b&c, 24 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    4.22 sec. (3712.22 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_TimeLimit                               3595.7459200988524
+CPXPARAM_Preprocessing_Reduce                    0
+CPXPARAM_Preprocessing_Linear                    0
+CPXPARAM_WorkMem                                 12000
+CPXPARAM_Threads                                 24
+CPXPARAM_Parallel                                -1
+CPXPARAM_MIP_Tolerances_UpperCutoff              1e+20
+CPXPARAM_MIP_Tolerances_MIPGap                   1.0000000000000001e-09
+CPXPARAM_MIP_Tolerances_Integrality              0
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Strategy_File                       3
+CPXPARAM_MIP_Strategy_StartAlgorithm             6
+CPXPARAM_MIP_Strategy_VariableSelect             3
+CPXPARAM_MIP_Strategy_HeuristicFreq              -1
+CPXPARAM_MIP_Strategy_Probe                      3
+CPXPARAM_MIP_Strategy_CallbackReducedLP          0
+CPXPARAM_MIP_Strategy_RINSHeur                   -1
+Warning: Control callbacks may disable some MIP features.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: traditional branch-and-cut.
+Parallel mode: opportunistic, using up to 24 threads.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0        0.0000   464                   Cuts: 188     6909         
+      0     0        0.0000   408                 Cliques: 21     7221         
+      0     0        0.0000   454                   Cuts: 154     8432         
+      0     2        0.0000   408                   Cuts: 120     8432         
+Elapsed time = 12.72 sec. (4045.44 ticks, tree = 0.01 MB, solutions = 0)
+      2     7        0.0000   368                      0.0000    28954         
+                                                     Cuts: 44                  
+     11    15        0.0000   396                      0.0000    57995         
+     24    37        0.0000   245                      0.0000   123040         
+                                                      Cuts: 4                  
+     37    22        0.0000   290                      0.0000    94550         
+     50     4        0.0000   401                      0.0000    14687         
+     67    40        0.0000   330                      0.0000   128275         
+     82    55        0.0000   316                      0.0000   150218         
+     98    52    infeasible                            0.0000   137046         
+    121    52        0.0000   267                      0.0000   137538         
+    213    59        0.0000   220                      0.0000   161233         
+                                                      Cuts: 2                  
+Elapsed time = 32.27 sec. (7302.62 ticks, tree = 1.60 MB, solutions = 0)
+    339    69        0.0000   383                      0.0000   188352         
+    474   109        0.0000   265                      0.0000   266477         
+    551    81        0.0000   254                      0.0000   215915         
+*   595    87      integral     0        0.0000        0.0000   236162    0.00%
+Found incumbent of value 0.000000 after 40.92 sec. (10778.03 ticks)
+    620   112        0.0000   318        0.0000        0.0000   276817    0.00%
+    660   119    infeasible              0.0000        0.0000   296356    0.00%
+
+Clique cuts applied:  394
+Implied bound cuts applied:  1
+Zero-half cuts applied:  2
+Lift and project cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    3.88 sec. (4026.60 ticks)
+Parallel b&c, 24 threads:
+  Real time             =   38.10 sec. (8916.50 ticks)
+  Sync time (average)   =    5.21 sec.
+  Wait time (average)   =    0.01 sec.
+                          ------------
+Total (root+branch&cut) =   41.98 sec. (12943.10 ticks)
+
+
+ >>>> Final solution: leader objective value 0.0000000000 (cplex value 0.0000000000 truecost 0.0000000000) time      46.23 <<<<
+
+
+
+ OK: feasibility check passed with cost 0.000000 and f* 0.00000000000000000000 vs Phi(x*) 0.00000000000000000000
+ OK, solved to optimality :-))
+
+STAH; input_file ; zbest ; final_bound ; root_bound; time (s.); root_time (s.); opt ;nodes ; %root_gap; %final_gap; setting 
+STAT; /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.mps.gz ; 0.000000 ; 0.000000  ; 0.000000 ; 46.233559 ; 4.254076 ; 1 ;676 ; 0.000000 ; 0.000000 ; 4 
+
+
+-------------------------------------------------------------------------------------------------------------------------
+ BEST SOLUTION AVAILABLE FOR /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/acc-tight5_100_0.mps.gz 
+ LEADER COST 0.000000 FOLLOWER COST 0.000000
+
+                   v11                   1.0000000000
+                   v23                   1.0000000000
+                   v35                   1.0000000000
+                   v41                   1.0000000000
+                   v56                   1.0000000000
+                   v60                   1.0000000000
+                   v67                   1.0000000000
+                   v77                   1.0000000000
+                   v93                   1.0000000000
+                   v97                   1.0000000000
+                 v1000                   1.0000000000
+                 v1018                   1.0000000000
+                 v1025                   1.0000000000
+                 v1029                   1.0000000000
+                 v1043                   1.0000000000
+                 v1052                   1.0000000000
+                 v1055                   1.0000000000
+                 v1062                   1.0000000000
+                 v1078                   1.0000000000
+                 v1090                   1.0000000000
+                 v1096                   1.0000000000
+                 v1108                   1.0000000000
+                 v1118                   1.0000000000
+                 v1126                   1.0000000000
+                 v1134                   1.0000000000
+                 v1137                   1.0000000000
+                 v1152                   1.0000000000
+                 v1160                   1.0000000000
+                 v1173                   1.0000000000
+                 v1181                   1.0000000000
+                 v1187                   1.0000000000
+                    v6                   1.0000000000
+                 v1200                   1.0000000000
+                 v1209                   1.0000000000
+                 v1214                   1.0000000000
+                 v1222                   1.0000000000
+                 v1229                   1.0000000000
+                 v1245                   1.0000000000
+                 v1254                   1.0000000000
+                 v1255                   1.0000000000
+                 v1271                   1.0000000000
+                 v1280                   1.0000000000
+                 v1285                   1.0000000000
+                 v1296                   1.0000000000
+                 v1301                   1.0000000000
+                 v1308                   1.0000000000
+                 v1323                   1.0000000000
+                 v1330                   1.0000000000
+                 v1337                   1.0000000000
+                  v104                   1.0000000000
+                  v114                   1.0000000000
+                  v132                   1.0000000000
+                  v134                   1.0000000000
+                  v149                   1.0000000000
+                  v158                   1.0000000000
+                  v159                   1.0000000000
+                  v167                   1.0000000000
+                  v175                   1.0000000000
+                  v187                   1.0000000000
+                  v191                   1.0000000000
+                  v202                   1.0000000000
+                  v207                   1.0000000000
+                  v219                   1.0000000000
+                  v223                   1.0000000000
+                  v237                   1.0000000000
+                  v239                   1.0000000000
+                  v250                   1.0000000000
+                  v256                   1.0000000000
+                  v266                   1.0000000000
+                  v278                   1.0000000000
+                  v286                   1.0000000000
+                  v294                   1.0000000000
+                  v310                   1.0000000000
+                  v321                   1.0000000000
+                  v323                   1.0000000000
+                  v337                   1.0000000000
+                  v340                   1.0000000000
+                  v349                   1.0000000000
+                  v360                   1.0000000000
+                  v366                   1.0000000000
+                  v374                   1.0000000000
+                  v386                   1.0000000000
+                  v403                   1.0000000000
+                  v408                   1.0000000000
+                  v414                   1.0000000000
+                  v422                   1.0000000000
+                  v431                   1.0000000000
+                  v438                   1.0000000000
+                  v451                   1.0000000000
+                  v459                   1.0000000000
+                  v475                   1.0000000000
+                  v480                   1.0000000000
+                  v492                   1.0000000000
+                  v502                   1.0000000000
+                  v513                   1.0000000000
+                  v516                   1.0000000000
+                  v524                   1.0000000000
+                  v536                   1.0000000000
+                  v544                   1.0000000000
+                  v554                   1.0000000000
+                  v564                   1.0000000000
+                  v577                   1.0000000000
+                  v579                   1.0000000000
+                  v590                   1.0000000000
+                  v603                   1.0000000000
+                  v608                   1.0000000000
+                  v622                   1.0000000000
+                  v628                   1.0000000000
+                  v638                   1.0000000000
+                  v646                   1.0000000000
+                  v657                   1.0000000000
+                  v669                   1.0000000000
+                  v674                   1.0000000000
+                  v685                   1.0000000000
+                  v689                   1.0000000000
+                  v701                   1.0000000000
+                  v707                   1.0000000000
+                  v718                   1.0000000000
+                  v730                   1.0000000000
+                  v741                   1.0000000000
+                  v747                   1.0000000000
+                  v755                   1.0000000000
+                  v763                   1.0000000000
+                  v776                   1.0000000000
+                  v779                   1.0000000000
+                  v790                   1.0000000000
+                  v799                   1.0000000000
+                  v805                   1.0000000000
+                  v816                   1.0000000000
+                  v819                   1.0000000000
+                  v835                   1.0000000000
+                  v845                   1.0000000000
+                  v850                   1.0000000000
+                  v861                   1.0000000000
+                  v869                   1.0000000000
+                  v877                   1.0000000000
+                  v885                   1.0000000000
+                  v892                   1.0000000000
+                  v903                   1.0000000000
+                  v914                   1.0000000000
+                  v923                   1.0000000000
+                  v936                   1.0000000000
+                  v942                   1.0000000000
+                  v952                   1.0000000000
+                  v961                   1.0000000000
+                  v965                   1.0000000000
+                  v977                   1.0000000000
+                  v987                   1.0000000000
+                  v995                   1.0000000000
+-------------------------------------------------------------------------------------------------------------------------
+

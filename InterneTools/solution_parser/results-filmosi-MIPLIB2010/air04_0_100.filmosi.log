@@ -1,0 +1,356 @@
+License for 'CIBOL Team' expires on Tue Aug  9 02:00:00 2039
+ 
+../bilevel -mpsfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.mps.gz -auxfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.aux -time_limit 3600 
+... using custom setting 4
+The chosen setting is MIX++
+
+
+available parameters --------------------------------------------------
+-mpsfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.mps.gz (the input file, part 1, needs to end with .mps; see readme.md for details on the format)
+-auxfile /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.aux (the input file, part 2, needs to end with .aux; only needs to be given if differently named as the mps-file)
+-time_limit, 3600 (in seconds, default: 3600)
+-available_memory, 12000 (in MB, default: 12000)
+-nodefile . (location for CPLEX nodefile to be used if available_memory is exhausted, default: current directory)
+-num_threads, 0 (0: all available (default); note: opportunistic mode of CPLEX, to change see next option)
+-randomseed, 0 (negative seed turns on deterministic multithread mode of CPLEX, default: 0)
+-node_limit, -1 (-1: no limit (default))
+-cplex_cuts, 1 (0: off, 1: normal (default), 2: moderate, 3: aggressive)
+-print_sol, 1 (0: no, 1: print nonzero entries of the final solution (default), 2: print also the zero entries)
+-setting, 4 (see below for description, default: MIX++)
+ ----------------------------------------------------------------------------------------------
+
+AVAILABLE SETTINGS------------------------------------------------------------------------------
+1 SEP1++
+2 SEP2++
+3 XU++
+4 MIX++
+21 SEP1+F
+22 SEP2+F
+23 XU+F
+24 MIX+F
+31 SEP1+P
+32 SEP2+P
+33 XU+P
+34 MIX+P
+41 SEP1
+42 SEP2
+43 XU
+44 MIX
+98 HC
+99 HC++
+----------------------------------------------------------------------------------------------
+
+ ... Cplex in opportunistic mode with 24 thread(s)
+Selected objective sense:  MINIMIZE
+Selected objective  name:  COST
+Selected RHS        name:  rhs
+Selected bound      name:  bnd
+HPR has 8904 cols
+Original HPR has 823 rows
+Updated HPR has 1646 rows
+Follower variables integer 1 binary 1
+Leader variables integer 1 binary 1
+Problem variables integer 1 binary 1
+Body has 1647 rows 
+Leader objective all integer (var+coeff?) 1
+Follower objective all integer (var+coeff?) 1
+Leader all integer (obj+cons+var?) 1
+Follower all integer (obj+cons+var?) 1
+Leader has 4452 cols
+Leader has 0 rows
+Follower has 4452 cols
+Follower has 1646 rows
+
+
+
+ -------------- PROBLEM STATISTICS for /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.mps.gz 
+      master   with     0 integer and  8904 binary variables (out of  8904 var.s) and  1646 constr.s
+      follower with     0 integer and  4452 binary variables (out of  8904 var.s) and  1646 constr.s
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_TimeLimit                               3599.4653244689107
+CPXPARAM_Preprocessing_Reduce                    0
+CPXPARAM_Preprocessing_Linear                    0
+CPXPARAM_WorkMem                                 12000
+CPXPARAM_Threads                                 24
+CPXPARAM_Parallel                                -1
+CPXPARAM_MIP_Tolerances_MIPGap                   1.0000000000000001e-09
+CPXPARAM_MIP_Tolerances_Integrality              0
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Strategy_File                       3
+CPXPARAM_MIP_Limits_Nodes                        0
+CPXPARAM_MIP_Strategy_StartAlgorithm             6
+CPXPARAM_MIP_Strategy_VariableSelect             3
+CPXPARAM_MIP_Strategy_HeuristicFreq              -1
+CPXPARAM_MIP_Strategy_Probe                      3
+CPXPARAM_MIP_Strategy_CallbackReducedLP          0
+CPXPARAM_MIP_Strategy_RINSHeur                   -1
+Warning: Control callbacks may disable some MIP features.
+Probing fixed 1309 vars, tightened 0 bounds.
+Probing time = 0.18 sec. (12.96 ticks)
+Cover probing fixed 139 vars, tightened 0 bounds.
+Clique merging time = 19.17 sec. (26841.18 ticks)
+Clique table members: 28101.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: traditional branch-and-cut.
+Parallel mode: opportunistic, using up to 24 threads.
+Parallel mode: opportunistic, using up to 24 threads for concurrent optimization.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           214.000000
+Iteration:   159   Dual objective     =         18415.000000
+Iteration:   323   Dual objective     =         33981.000000
+Iteration:   464   Dual objective     =         44390.666667
+Iteration:   588   Dual objective     =         46956.666667
+Iteration:   702   Dual objective     =         47960.253238
+Iteration:   804   Dual objective     =         48873.515152
+Iteration:   916   Dual objective     =         49395.964876
+Iteration:  1013   Dual objective     =         49695.397328
+Iteration:  1106   Dual objective     =         50101.290597
+Iteration:  1192   Dual objective     =         50381.432387
+Iteration:  1283   Dual objective     =         50629.152742
+Iteration:  1375   Dual objective     =         51097.530229
+Iteration:  1461   Dual objective     =         51487.756610
+Iteration:  1549   Dual objective     =         51814.426899
+Iteration:  1635   Dual objective     =         52094.216894
+Iteration:  1719   Dual objective     =         52284.641997
+Iteration:  1801   Dual objective     =         52582.164858
+Iteration:  1886   Dual objective     =         52807.507161
+Iteration:  1972   Dual objective     =         53143.424544
+Iteration:  2062   Dual objective     =         53454.981942
+Iteration:  2148   Dual objective     =         53642.556208
+Iteration:  2232   Dual objective     =         53765.126223
+Iteration:  2314   Dual objective     =         53958.762965
+Iteration:  2397   Dual objective     =         54156.262537
+Iteration:  2482   Dual objective     =         54334.973043
+Iteration:  2565   Dual objective     =         54532.626619
+Iteration:  2652   Dual objective     =         54771.900151
+Iteration:  2742   Dual objective     =         54913.324684
+Iteration:  2826   Dual objective     =         55025.732396
+Iteration:  2915   Dual objective     =         55129.823167
+Iteration:  3006   Dual objective     =         55222.452837
+Iteration:  3088   Dual objective     =         55279.152530
+Iteration:  3173   Dual objective     =         55359.232142
+Iteration:  3255   Dual objective     =         55417.516019
+Iteration:  3346   Dual objective     =         55467.429440
+Iteration:  3435   Dual objective     =         55515.276793
+Iteration:  3527   Dual objective     =         55534.561217
+Reinitializing dual norms . . .
+
+Dual simplex solved model.
+
+Root relaxation solution time = 1.29 sec. (708.31 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0    55535.4364   291                  55535.4364     3569         
+      0     0    55624.4248   271                    Cuts: 83     3881         
+      0     0    55647.4297   280                    Cuts: 11     4004         
+      0     0    55666.3026   321                    Cuts: 11     4140         
+      0     0    55666.4910   329                  Cliques: 3     4168         
+      0     0    55676.7417   305                     Cuts: 5     4259         
+      0     0    55681.3577   352                     Cuts: 4     4358         
+      0     0    55682.7616   345                  Cliques: 3     4417         
+      0     0    55685.8689   354                     Cuts: 4     4499         
+
+Clique cuts applied:  23
+Zero-half cuts applied:  12
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =   35.48 sec. (46034.14 ticks)
+Parallel b&c, 24 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =   35.48 sec. (46034.14 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+CPXPARAM_Simplex_Tolerances_Feasibility          1.0000000000000001e-09
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_TimeLimit                               3563.9780670108739
+CPXPARAM_Preprocessing_Reduce                    0
+CPXPARAM_Preprocessing_Linear                    0
+CPXPARAM_WorkMem                                 12000
+CPXPARAM_Threads                                 24
+CPXPARAM_Parallel                                -1
+CPXPARAM_MIP_Tolerances_UpperCutoff              1e+20
+CPXPARAM_MIP_Tolerances_MIPGap                   1.0000000000000001e-09
+CPXPARAM_MIP_Tolerances_Integrality              0
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Strategy_File                       3
+CPXPARAM_MIP_Strategy_StartAlgorithm             6
+CPXPARAM_MIP_Strategy_VariableSelect             3
+CPXPARAM_MIP_Strategy_HeuristicFreq              -1
+CPXPARAM_MIP_Strategy_Probe                      3
+CPXPARAM_MIP_Strategy_CallbackReducedLP          0
+CPXPARAM_MIP_Strategy_RINSHeur                   -1
+Warning: Control callbacks may disable some MIP features.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: traditional branch-and-cut.
+Parallel mode: opportunistic, using up to 24 threads.
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     2    55685.8689   354                     Cuts: 8     4499         
+Elapsed time = 6.72 sec. (2778.87 ticks, tree = 0.01 MB, solutions = 0)
+      1    16    56096.6286   231                  55820.9642    10491         
+                                                      Cuts: 2                  
+     24     4    56146.4379   249                  55876.8750     5615         
+                                                      Cuts: 4                  
+     32    26    56321.5992   297                  55939.3056    14361         
+     49    25    56221.8991   264                  55939.3056    13894         
+     67    24    56142.6386     6                  55941.4328    13406         
+     76    52    56162.1926   251                  55941.4328    31349         
+     91    49    56398.6537   254                  55941.4328    28756         
+    105    62    57246.0065   238                  55941.4328    40924         
+*   121    46      integral     0    56364.0000    55941.4328    27923    0.75%
+Found incumbent of value 56364.000000 after 23.88 sec. (5039.63 ticks)
+    126    56    56116.2993   241    56364.0000    55941.4328    33716    0.75%
+    201    66    56293.1395   278    56269.0000    55941.4328    45436    0.58%
+Elapsed time = 31.26 sec. (6060.57 ticks, tree = 0.01 MB, solutions = 4)
+    305    59        cutoff          56167.0000    55976.1841    65943    0.34%
+                                                      Cuts: 2                  
+    404    68    56222.0716     4    56138.0000    56034.4033   112047    0.18%
+    457    64    56253.3000   230    56138.0000    56034.4033    98444    0.18%
+    493    32        cutoff          56138.0000    56034.4033   118501    0.18%
+
+Clique cuts applied:  31
+Zero-half cuts applied:  12
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    2.77 sec. (2717.51 ticks)
+Parallel b&c, 24 threads:
+  Real time             =   40.72 sec. (8105.61 ticks)
+  Sync time (average)   =    9.23 sec.
+  Wait time (average)   =    0.03 sec.
+                          ------------
+Total (root+branch&cut) =   43.50 sec. (10823.12 ticks)
+
+
+ >>>> Final solution: leader objective value 56138.0000000000 (cplex value 56138.0000000000 truecost 56138.0000000000) time      79.52 <<<<
+
+
+
+ OK: feasibility check passed with cost 56138.000000 and f* -7484.00000000000000000000 vs Phi(x*) -7484.00000000000000000000
+ OK, solved to optimality :-))
+
+STAH; input_file ; zbest ; final_bound ; root_bound; time (s.); root_time (s.); opt ;nodes ; %root_gap; %final_gap; setting 
+STAT; /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.mps.gz ; 56138.000000 ; 56138.000000  ; 55685.868905 ; 79.521379 ; 36.021922 ; 1 ;510 ; 0.805392 ; 0.000000 ; 4 
+
+
+-------------------------------------------------------------------------------------------------------------------------
+ BEST SOLUTION AVAILABLE FOR /home/utr_thuerauf/projects/bilevel-library/code-mergen/data/MIPLIB2010/air04_0_100.mps.gz 
+ LEADER COST 56138.000000 FOLLOWER COST -7484.000000
+
+                    x1                   1.0000000000
+                    x2                   1.0000000000
+                    x3                   1.0000000000
+                    x4                   1.0000000000
+                    x5                   1.0000000000
+                    x6                   1.0000000000
+                    x7                   1.0000000000
+                    x8                   1.0000000000
+                   x10                   1.0000000000
+                   x12                   1.0000000000
+                   x13                   1.0000000000
+                   x14                   1.0000000000
+                   x16                   1.0000000000
+                   x18                   1.0000000000
+                   x19                   1.0000000000
+                   x20                   1.0000000000
+                   x21                   1.0000000000
+                   x22                   1.0000000000
+                   x23                   1.0000000000
+                   x26                   1.0000000000
+                   x27                   1.0000000000
+                   x29                   1.0000000000
+                   x30                   1.0000000000
+                   x33                   1.0000000000
+                   x34                   1.0000000000
+                   x35                   1.0000000000
+                   x36                   1.0000000000
+                   x37                   1.0000000000
+                   x39                   1.0000000000
+                   x40                   1.0000000000
+                   x41                   1.0000000000
+                   x42                   1.0000000000
+                   x43                   1.0000000000
+                   x44                   1.0000000000
+                   x45                   1.0000000000
+                   x46                   1.0000000000
+                   x49                   1.0000000000
+                   x50                   1.0000000000
+                   x51                   1.0000000000
+                   x54                   1.0000000000
+                   x57                   1.0000000000
+                   x58                   1.0000000000
+                   x59                   1.0000000000
+                   x60                   1.0000000000
+                   x61                   1.0000000000
+                   x64                   1.0000000000
+                   x65                   1.0000000000
+                   x67                   1.0000000000
+                   x68                   1.0000000000
+                   x69                   1.0000000000
+                   x74                   1.0000000000
+                   x75                   1.0000000000
+                   x82                   1.0000000000
+                   x84                   1.0000000000
+                   x86                   1.0000000000
+                   x88                   1.0000000000
+                   x90                   1.0000000000
+                   x92                   1.0000000000
+                   x93                   1.0000000000
+                   x94                   1.0000000000
+                   x95                   1.0000000000
+                   x96                   1.0000000000
+                  x100                   1.0000000000
+                  x101                   1.0000000000
+                  x102                   1.0000000000
+                  x103                   1.0000000000
+                  x106                   1.0000000000
+                  x221                   1.0000000000
+                  x275                   1.0000000000
+                  x525                   1.0000000000
+                  x614                   1.0000000000
+                  x617                   1.0000000000
+                  x895                   1.0000000000
+                 x1194                   1.0000000000
+                 x1275                   1.0000000000
+                 x1293                   1.0000000000
+                 x1429                   1.0000000000
+                 x1467                   1.0000000000
+                 x1520                   1.0000000000
+                 x1828                   1.0000000000
+                 x2390                   1.0000000000
+                 x2537                   1.0000000000
+                 x2552                   1.0000000000
+                 x2884                   1.0000000000
+                 x3203                   1.0000000000
+                 x3403                   1.0000000000
+                 x3518                   1.0000000000
+                 x3587                   1.0000000000
+                 x3932                   1.0000000000
+                 x4093                   1.0000000000
+                 x4686                   1.0000000000
+                 x4701                   1.0000000000
+                 x4893                   1.0000000000
+                 x5212                   1.0000000000
+                 x5425                   1.0000000000
+                 x6046                   1.0000000000
+                 x6958                   1.0000000000
+                 x7307                   1.0000000000
+                 x7512                   1.0000000000
+                 x7665                   1.0000000000
+                 x7731                   1.0000000000
+                 x7911                   1.0000000000
+                 x8636                   1.0000000000
+-------------------------------------------------------------------------------------------------------------------------
+
