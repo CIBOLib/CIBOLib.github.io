@@ -1,5 +1,4 @@
-#Execute this script, while the terminal you use is actually in the solver-directory. A flag --programm_dir could not be used since
-# the libcplex.so etc. cannot be found then
+#should be considered to add an argument for different solver
 
 import subprocess
 import os
@@ -33,7 +32,7 @@ for aux_file in os.scandir(path=aux_input_dir):
                 mps_file = mps_link
 
             if aux_filename_without_extension in log_mpsaux_dict.keys():
-                print("Key kann nicht zweimal verwendet werden.")
+                print("Key cannot be used twice.")
             else:
                 log_mpsaux_dict[aux_filename_without_extension]=(mps_file,aux_file.path)
 
@@ -65,4 +64,4 @@ for filename in os.listdir(input_log_dir):
                 print(command)
                 #subprocess.run(command, stdout=output); #run waits until the process is finished
         else:
-            print("Error")
+            print("")
