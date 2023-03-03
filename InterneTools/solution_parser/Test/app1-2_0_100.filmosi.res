@@ -1,0 +1,1 @@
+{"instance_name": "app1-2_0_100", "solver": "(Fischetti, Ljubic, Monaci, Sinnl)-Solver", "solver_status": "not solved to optimality", "objective_value": 1e+20, "best_dual_bound": -42.995826, "leader_variables": {}, "follower_variables": {}}

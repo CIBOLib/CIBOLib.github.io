@@ -1,5 +1,6 @@
 import argparse
-import variables_parser
+import json
+import variables_parser #can decide the level of a variable 
 
 arg_parser = argparse.ArgumentParser(
     description="Parses the log files and extracts with the help of the variables parser the lower level and upper level variable names. Returns a result file.")
@@ -9,6 +10,8 @@ arg_parser.add_argument('--mpsfile', action='store',
                         help='The mps file to parse', required=True)
 arg_parser.add_argument('--auxfile', action='store',
                         help='the aux file belonging to the instance', required=True)
+arg_parser.add_argument('--output_path', action='store',
+                        help='the output path for the *.filmosi.res', required=True)
 args = arg_parser.parse_args()
 
 
@@ -18,6 +21,7 @@ class Solution_Parser():
     solver_status="infeasible";
     objective_value=None;
     best_dual_bound=None;
+    final_gap_percentage=-1;
     upper_variables={};
     lower_variables={};
     variables={};
@@ -33,11 +37,12 @@ class Solution_Parser():
 
         self.feasible=int(data[7])
         if self.feasible>=0:
-            self.objective_value=data[2]
-            self.best_dual_bound=data[3]
+            self.objective_value=float(data[2])
+            self.best_dual_bound=float(data[3])
+            self.final_gap_percentage=float(data[10])
             time=float(data[5])
             if time>=3600 or self.feasible==0: #or only if there are special cases, I do not know yet
-                self.solver_status="feasible, but not solved to optimality"
+                self.solver_status="not solved to optimality"
             else:
                 self.solver_status="solved to optimality"
         return
@@ -45,7 +50,7 @@ class Solution_Parser():
     def process_solution_line(self, line):
         line=line.strip(' ')
         array=line.split(" ")
-        variable, variable_value=array[0],array[len(array)-1]
+        variable, variable_value=array[0],float(array[len(array)-1])
         self.variables[variable]=variable_value
 
     def assemble_result(self):
@@ -74,6 +79,11 @@ class Solution_Parser():
         }
         return soldata
 
+def write_result_json(path: str, result_dictionary: dict):
+    json_file = open(path, "w")
+    json.dump(result_dictionary, json_file)
+    json_file.close()
+
 
 def open_input_file(filename):
         return open(filename, 'r')
@@ -83,7 +93,9 @@ def open_input_file(filename):
 with open_input_file(args.logfile) as logfile:
 
     sol_parser = Solution_Parser()
-    sol_parser.instance_name=filename_without_extension=args.logfile[:-len(".filmosi.log")]
+    filename_without_extension=args.logfile[:-len(".filmosi.log")]
+    array=filename_without_extension.split("/")
+    sol_parser.instance_name=array[len(array)-1]
     sol_parser.solver="(Fischetti, Ljubic, Monaci, Sinnl)-Solver";
 
     for line in logfile.readlines():
@@ -94,8 +106,6 @@ with open_input_file(args.logfile) as logfile:
                 continue
             else:
                 sol_parser.process_solution_line(line)
-            
-
+                
 result = sol_parser.assemble_result()
-
-print(result)
+write_result_json(args.output_path,result)

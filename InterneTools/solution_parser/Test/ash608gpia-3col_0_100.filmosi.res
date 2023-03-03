@@ -1,0 +1,1 @@
+{"instance_name": "ash608gpia-3col_0_100", "solver": "(Fischetti, Ljubic, Monaci, Sinnl)-Solver", "solver_status": "infeasible", "objective_value": null, "best_dual_bound": null, "leader_variables": {}, "follower_variables": {}}
