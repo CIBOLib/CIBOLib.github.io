@@ -1,6 +1,6 @@
 import argparse
 import json
-import variables_parser #can decide the level of a variable 
+import variables_parser #can decide the level of a variable
 
 arg_parser = argparse.ArgumentParser(
     description="Parses the log files and extracts with the help of the variables parser the lower level and upper level variable names. Returns a result file.")
@@ -31,9 +31,9 @@ class Solution_Parser():
         return
 
     def process_stat_line(self, line):
-        # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7] ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11] 
+        # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7] ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11]
         line=line.replace(" ","")
-        data=line.split(";") 
+        data=line.split(";")
 
         self.feasible=int(data[7])
         if self.feasible>=0:
@@ -80,8 +80,9 @@ class Solution_Parser():
         return soldata
 
 def write_result_json(path: str, result_dictionary: dict):
-    json_file = open(path, "w")
-    json.dump(result_dictionary, json_file)
+    name_of_file=path + result_dictionary['instance_name'] + ".json"
+    json_file = open(name_of_file, "w")
+    json.dump(result_dictionary, json_file, indent=4)
     json_file.close()
 
 
@@ -106,6 +107,6 @@ with open_input_file(args.logfile) as logfile:
                 continue
             else:
                 sol_parser.process_solution_line(line)
-                
+
 result = sol_parser.assemble_result()
 write_result_json(args.output_path,result)
