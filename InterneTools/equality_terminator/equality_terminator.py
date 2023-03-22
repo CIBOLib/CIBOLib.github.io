@@ -124,17 +124,23 @@ class AuxParser(ParserBase):
         self.buffered_lines.append(line)
 
     def process_next_line(self, line):
-        [val_type, value] = line.split()
-        if val_type == "N":
-            self.emit_line(line)
-        elif val_type == "M":
-            self.number_of_constraints = int(value)
-        elif val_type == "LR":
-            self.lr_section_reached = True
-            self.process_lr_value(value)
-        else:
-            self.buffer_line(line)
-
+        try:
+            [val_type, value] = line.split()
+            if val_type == "N":
+                self.emit_line(line)
+            elif val_type == "M":
+                self.number_of_constraints = int(value)
+            elif val_type == "LR":
+                self.lr_section_reached = True
+                self.process_lr_value(value)
+            else:
+                self.buffer_line(line)
+        except ValueError as e:
+            #ignore , empty line
+            return
+        
+    #process_next_line
+    
     def process_end_reached(self):
         if not self.buffer_emitted:
             self.emit_buffer()
