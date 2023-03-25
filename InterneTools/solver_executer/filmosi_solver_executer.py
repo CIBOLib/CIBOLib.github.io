@@ -42,7 +42,7 @@ for filename in os.listdir(input_dir):
             print("Solve instance number", counter, "with name", filename_without_extension)
 
             with open(output_path_without_extension+".filmosi.log", "w") as output:
-                command=["./bilevel", "-mpsfile", input_path_without_extension+".mps.gz", "-auxfile", input_path_without_extension+".aux", "-time_limit", "3600", "-available_memory", "16000"]
+                command=["./bilevel", "-mpsfile", input_path_without_extension+".mps.gz", "-auxfile", input_path_without_extension+".aux", "-time_limit", "3600", "-available_memory", "32768"]
                 #print(command)
                 subprocess.run(command, stdout=output); #run waits until the process is finished
 
