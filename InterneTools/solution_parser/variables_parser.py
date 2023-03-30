@@ -43,7 +43,6 @@ class AuxParser():
 
 
 class MpsParser():
-    objsense = 'MAX'
     current_row_index = 0
 
     problem_name = None
@@ -52,36 +51,22 @@ class MpsParser():
     row_metadata = {}
     cost_row_name = None
 
-    # a dict pointing from (row_name) to (is_lower: bool, entries: {column to (is_lower, coefficient)})
+    # a dict pointing from (row_name) to (is_lower: bool, entries: {column to (is_lower, coefficient)}), TODO:coefficient not relevant here can refactor more 
     row_entries = {}
 
-    # a dict pointing from (row_name) to (is_lower: bool, coefficient)
-    rhs_row_entries = {}
-
-    # a dict pointing from the col name to the coefficient
-    cost_vector_entries = {}
-    # a dict ponting from the col name to the coefficient of the lower cost vector
-    lower_cost_vector_entries = {}
-
-    # a dictionary specifying the column type. only set if the variable is not real.
-    column_types = {}
-
-    # required to correctly count colmun indices
+    # required to correctly count column indices
     current_column_name = None
 
     # internal:
 
     # we start the counter at -1 because it will be incremented at the first entry already
     current_column_index = -1
-    # required to skip all but the first rhs ident
-    first_rhs_ident = None
+    # 
     int_marker_active = False
 
     def __init__(self, aux_parser):
         self.aux_parser = aux_parser
 
-    def process_objsense(self, line):
-        self.objsense = line.strip()
 
     def process_next_line(self, line):
         if line[0] != " ":
@@ -89,17 +74,13 @@ class MpsParser():
             if next_section.startswith("NAME"):
                 self.problem_name = line.split()[1].strip()
             elif next_section == "OBJSENSE":
-                self.process_next_line_inner = self.process_objsense
+                self.process_next_line_inner = self.process_non_relevant_line
             elif next_section == "ROWS":
                 self.process_next_line_inner = self.process_rows_line
             elif next_section == "COLUMNS":
                 self.process_next_line_inner = self.process_columns_line
-            elif next_section == "RHS":
-                self.process_next_line_inner = self.process_rhs_line
-            elif next_section == "RANGES":
-                self.process_next_line_inner = self.process_ranges_line
-            elif next_section == "BOUNDS":
-                self.process_next_line_inner = self.process_bounds_line
+            elif next_section in ["RANGES", "RHS", "BOUNDS"]:
+                self.process_next_line_inner = self.process_non_relevant_line
             elif next_section == "ENDATA":
                 self.process_next_line_inner = self.process_end
             else:
@@ -111,15 +92,7 @@ class MpsParser():
         if len(line.strip()) > 0:
             raise Exception("found non empty line after ENDATA")
 
-    def process_ranges_line(self, line):
-        # do nothing here
-        return
-
-    def process_bounds_line(self, line):
-        # do nothing here
-        return
-
-    def process_rhs_line(self, line):
+    def process_non_relevant_line(self, line):
         # do nothing here
         return
 
@@ -134,7 +107,7 @@ class MpsParser():
             if self.cost_row_name is None:
                 self.cost_row_name = row_name
             pass
-        if row_type in ["G", "L", "N"]:
+        if row_type in ["G", "L", "N", "E"]:
             self.row_metadata[row_name] = (row_type, is_lower_row)
         else:
             raise Exception(f"unsupported row sense found: {row_type}")
@@ -149,8 +122,15 @@ class MpsParser():
                 raise Exception('Invalid marker row found: ' + line.strip())
             return
 
-        [column_name, row_name, value] = line.split()
+        line = line.split()
+        [column_name, row_name, value] = line[:3]
+        self.handle_column_line_value(column_name, row_name, value)
+        line = line[3:]
+        if len(line) > 0:
+            [row_name, value] = line
+            self.handle_column_line_value(column_name, row_name, value)
 
+    def handle_column_line_value(self,column_name, row_name, value):
         if self.current_column_name != column_name:
             self.current_column_index += 1
             self.current_column_name = column_name
@@ -158,15 +138,11 @@ class MpsParser():
         (row_sense, row_is_lower) = self.row_metadata[row_name]
         is_lower_column = column_name in self.aux_parser.lower_variable_dict or self.current_column_index in self.aux_parser.lower_variable_dict
 
-        if is_lower_column:
-            self.lower_cost_vector_entries[column_name] = self.aux_parser.lower_objective_coefficient_dict[self.current_column_index]
-
         value = float(value)
         if row_sense == "G":
             value *= -1
 
-        if row_sense == "N" and self.cost_row_name == row_name:
-            self.cost_vector_entries[column_name] = value
+        if row_sense == "N" and self.cost_row_name == row_name: #cost vector, not relevant for us here
             return
 
         if row_name in self.row_entries:
@@ -175,7 +151,7 @@ class MpsParser():
             row_dict = {}
             self.row_entries[row_name] = (row_is_lower, row_dict)
         row_dict[column_name] = (is_lower_column, value)
-
+    
     def assemble_result(self):
         all_variable_entries = set((col, is_lower) for (
             _, dict) in self.row_entries.values() for (col, (is_lower, _)) in dict.items())
@@ -188,10 +164,8 @@ class MpsParser():
 
         metadata = {
             'instance_name': self.problem_name,
-            'leader_objective_sense': self.objsense,
             'leader_variables': upper_variables,
             'follower_variables': lower_variables,
-            'follower_objective_sense': self.aux_parser.objective_sense,
         }
         return metadata
 

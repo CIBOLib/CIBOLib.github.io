@@ -80,7 +80,7 @@ class Solution_Parser():
         return soldata
 
 def write_result_json(path: str, result_dictionary: dict):
-    name_of_file=path + result_dictionary['instance_name'] + ".json"
+    name_of_file=path+".json"
     json_file = open(name_of_file, "w")
     json.dump(result_dictionary, json_file, indent=4)
     json_file.close()
