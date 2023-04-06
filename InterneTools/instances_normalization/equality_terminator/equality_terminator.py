@@ -177,7 +177,7 @@ def open_input_file(filename):
         return open(filename, 'r')
 def open_output_file(filename):
     out_dir = args.mps_output_dir
-    if filename.endswith("aux"):
+    if filename.endswith(".aux"):
         out_dir = args.aux_output_dir
     outputfile = path.join(out_dir, path.basename(filename))
     if args.gzip_output and filename.endswith(".gz"):
