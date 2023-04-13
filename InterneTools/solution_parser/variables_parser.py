@@ -71,7 +71,7 @@ class MpsParser():
     def process_next_line(self, line):
         if line[0] != " ":
             next_section = line.strip()
-            if next_section.startswith("NAME"):
+            if next_section.startswith("NAME") or next_section.startswith("*NAME"):
                 self.problem_name = line.split()[1].strip()
             elif next_section == "OBJSENSE":
                 self.process_next_line_inner = self.process_non_relevant_line
@@ -84,7 +84,7 @@ class MpsParser():
             elif next_section == "ENDATA":
                 self.process_next_line_inner = self.process_end
             else:
-                raise Exception(f"unknown section marker: {next_section}")
+                pass  #raise Exception(f"unknown section marker: {next_section}")
         else:
             self.process_next_line_inner(line)
 
