@@ -72,7 +72,9 @@ class MpsParser():
         if line[0] != " ":
             next_section = line.strip()
             if next_section.startswith("NAME") or next_section.startswith("*NAME"):
-                self.problem_name = line.split()[1].strip()
+                name=line.split()
+                if(len(name)>1):
+                    self.problem_name = name[1].strip()
             elif next_section == "OBJSENSE":
                 self.process_next_line_inner = self.process_non_relevant_line
             elif next_section == "ROWS":
