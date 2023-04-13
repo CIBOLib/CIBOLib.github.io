@@ -65,7 +65,9 @@ class Solution_Parser():
             elif variable in lower_variables_names:
                 self.lower_variables[variable]=self.variables[variable]
             else:
-                raise Exception("Variable not found in original instance", variable);
+                self.upper_variables[variable]=self.variables[variable]
+                #raise Exception("Variable not found in original instance", variable); 
+                #-> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here) 
 
 
         soldata = {
