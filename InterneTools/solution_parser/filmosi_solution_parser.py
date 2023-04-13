@@ -32,6 +32,11 @@ class Solution_Parser():
 
     def process_stat_line(self, line):
         # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7] ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11]
+        if line.startswith("STAT;ERROR: solution not bilevel feasible"):
+            self.feasible=-1
+            self.solver_status="ERROR: solution not bilevel feasible"
+            return
+
         line=line.replace(" ","")
         data=line.split(";")
 

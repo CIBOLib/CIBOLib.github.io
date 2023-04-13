@@ -20,26 +20,29 @@ class AuxParser():
         pass
 
     def process_next_line(self, line):
-        
-        [val_type, value] = line.split()
-        if value.isnumeric():
-            value = int(value)
-        if val_type == "N":
-            self.number_of_lower_variables = int(value)
-        elif val_type == "M":
-            self.number_of_lower_constraints = int(value)
-        elif val_type == "LC":
-            self.lower_variable_dict[value] = True
-            self.lc_entries.append(value)
-        elif val_type == "LR":
-            self.lower_constraint_dict[value] = True
-        elif val_type == "LO":
-            matching_lc_index = self.lc_entries.pop(0)
-            self.lower_objective_coefficient_dict[matching_lc_index] = value
-        elif val_type == "OS":
-            self.objective_sense = value
-        else:
-            raise Exception('Invalid value type: ' + val_type)
+        try:
+            [val_type, value] = line.split()
+            if value.isnumeric():
+                value = int(value)
+            if val_type == "N":
+                self.number_of_lower_variables = int(value)
+            elif val_type == "M":
+                self.number_of_lower_constraints = int(value)
+            elif val_type == "LC":
+                self.lower_variable_dict[value] = True
+                self.lc_entries.append(value)
+            elif val_type == "LR":
+                self.lower_constraint_dict[value] = True
+            elif val_type == "LO":
+                matching_lc_index = self.lc_entries.pop(0)
+                self.lower_objective_coefficient_dict[matching_lc_index] = value
+            elif val_type == "OS":
+                self.objective_sense = value
+            else:
+                raise Exception('Invalid value type: ' + val_type)
+        except ValueError as e:
+            #ignore , empty line
+            return
 
 
 class MpsParser():
@@ -69,6 +72,8 @@ class MpsParser():
 
 
     def process_next_line(self, line):
+        if len(line)==0:
+            return
         if line[0] != " ":
             next_section = line.strip()
             if next_section.startswith("NAME") or next_section.startswith("*NAME"):
