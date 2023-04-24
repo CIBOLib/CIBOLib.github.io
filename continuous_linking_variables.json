@@ -1,0 +1,875 @@
+{
+    "neos13_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1171737_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "swath1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "roi5alpha10n8_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-2746589-doon_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "radiationm18-12-05_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5114902-kasavu_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5049753-cuanza_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-848589_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map16715-04_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr100-p10_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1456979_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "danoint_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5075914-elvire_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "lotsize_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ic97_potential_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5075914-elvire_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sing326_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1116954_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "snp-02-004-104_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "blp-ic98_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1456979_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-933966_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mik-250-20-75-4_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr100-p5_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ran16x16_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "binkar10_1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map20_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocII-4-11_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr200-p5_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "h80x6320d_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1171448_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1758913_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pigeon-10_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "s250r10_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5107597-kakapo_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4763324-toguru_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3216931-puriri_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "roll3000_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uccase9_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3627168-kasai_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pg_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5107597-kakapo_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "unitcal_7_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "cost266-UUE_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1760995_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase26_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3754224-navua_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "markshare_4_0_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase12_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1396125_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "seymour1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "msc98-ip_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "assign1-5-8_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1171737_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mcsched_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "traininstance2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sing326_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uccase9_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "bppc4-08_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos17_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "istanbul-no-cutoff_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3656078-kumeu_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched010_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase40_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched007_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sp150x300d_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1644855_100_0.mps": [],
+    "n5-3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "timtab1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pg_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "swath3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1116954_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-860300_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "gfd-schedulen180f7d50m30k18_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "danoint_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-916792_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "blp-ar98_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites2-60-fs_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "net12_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "n5-3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dfn-gwin-UUM_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3402294-bobin_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-476283_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dws008-01_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3216931-puriri_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1644855_50_50.mps": [],
+    "supportcase7_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "bppc4-08_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-476283_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "exp-1-500-5-5_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "icir97_tension_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map20_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "blp-ar98_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "var-smallemery-m6j6_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "app1-2_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1758913_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rd-rplusc-21_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4722843-widden_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3754480-nidda_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "physiciansched3-3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dws008-01_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fhnw-binpack4-48_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3046615-murg_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-916792_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos17_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-2978193-inde_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mik-250-1-100-1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mc11_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uccase12_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sct2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "newdano_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr200-p5_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "snp-02-004-104_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4387871-tavua_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1171448_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "irish-electricity_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "radiationm40-10-02_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mcsched_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "qiu_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocII-5-11_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "momentum1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "bienst2_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dano3_3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5114902-kasavu_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4413714-turia_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "markshare_4_0_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5104907-jarama_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "beasleyC3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pk1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "h80x6320d_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mik-250-20-75-4_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr100-p10_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fhnw-binpack4-48_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "p200x1188c_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites2-40_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pigeon-10_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pg5_34_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mushroom-best_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map10_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dano3_3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "tr12-30_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "exp-1-500-5-5_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched008_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4338804-snowy_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mc11_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pk1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites1-25_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocI-4-11_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites2-60-fs_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uct-subprob_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "timtab1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "b1c1s1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos13_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-873061_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dano3_5_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "cbs-cta_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fhnw-binpack4-4_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "triptim1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sing44_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase42_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1601936_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "momentum1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1396125_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4647030-tutaki_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched010_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocII-4-11_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1830653_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites1-25_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "thor50dday_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map16715-04_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-911970_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "blp-ic98_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3402294-bobin_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3402454-bohle_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dfn-gwin-UUM_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "milo-v12-6-r2-40-1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rd-rplusc-21_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4413714-turia_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1644855_0_100.mps": [],
+    "neos-5195221-niemur_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "markshare2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "msc98-ip_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "b1c1s1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "net12_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4722843-widden_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mik-250-1-100-1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4300652-rahue_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4763324-toguru_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase40_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sing44_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "germanrr_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "leo1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3402454-bohle_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map18_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fastxgemm-n2r6s0t2_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-934278_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "physiciansched6-2_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "n4-3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5195221-niemur_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase12_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3754224-navua_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fhnw-binpack4-4_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "graphdraw-domain_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "fastxgemm-n2r6s0t2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "newdano_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "dano3_5_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map18_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1445765_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "cbs-cta_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ran16x16_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "pg5_34_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched007_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-873061_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "physiciansched6-2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "swath1_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "app1-2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "icir97_tension_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "unitcal_7_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4300652-rahue_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ic97_potential_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1830653_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4954672-berkel_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase42_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "physiciansched3-3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "qiu_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3754480-nidda_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5188808-nattai_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "p200x1188c_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-933966_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rmatr100-p5_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "n9-3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "n4-3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4387871-tavua_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "traininstance6_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "leo2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "irish-electricity_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5104907-jarama_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "istanbul-no-cutoff_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5188808-nattai_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "buildingenergy_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1601936_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-827175_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-2978193-inde_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1122047_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "triptim1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "thor50dday_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-827175_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "milo-v12-6-r2-40-1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "bienst2_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "satellites2-40_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "glass4_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocI-4-11_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "mushroom-best_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4647030-tutaki_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "cmflsp50-24-8-8_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-934278_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "n9-3_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "beasleyC3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "cmflsp50-24-8-8_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "ns1208400_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uct-subprob_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3627168-kasai_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5093327-huahum_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "assign1-5-8_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5093327-huahum_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "savsched1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-5049753-cuanza_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1445765_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "seymour1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "zib54-UUE_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "buildingenergy_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase7_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4338804-snowy_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-1122047_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "markshare2_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "csched008_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "swath3_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "glass4_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-848589_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "rocII-5-11_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "CMS750_4_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4954672-berkel_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-4532248-waihi_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "binkar10_1_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "uccase12_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "map10_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "zib54-UUE_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "sp150x300d_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "roi2alpha3n4_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "lotsize_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "supportcase26_0_100.mps": [
+        "ERROR:All linking variables should be integer"
+    ],
+    "neos-3046615-murg_50_50.mps": [
+        "ERROR:All linking variables should be integer"
+    ]
+}

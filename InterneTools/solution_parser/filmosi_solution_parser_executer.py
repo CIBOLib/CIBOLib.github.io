@@ -53,7 +53,6 @@ output_dir = args.output_dir
 os.makedirs(output_dir, exist_ok=True)
 
 for filename in os.listdir(input_log_dir):
-
     if (filename.endswith(".filmosi.log")):
         filename_without_extension = filename[:-len(".filmosi.log")]
         output_path_without_extension = path.join(

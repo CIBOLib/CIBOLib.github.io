@@ -67,6 +67,7 @@ title: BOBILib Browse Instances
           'formatted-number',
           'formatted-number',
           'formatted-number',
+	  'formatted-number',
           'formatted-number',
           'formatted-number',
           'formatted-number',
@@ -97,7 +98,7 @@ title: BOBILib Browse Instances
         const instance = content[instancename];
         var col_names = ["Type", "Class", "ulNumVariables", "ulNumIntVariables",
           "ulNumBinVariables", "llNumVariables", "llNumIntVariables", "llNumBinVariables",
-          "linkNumVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
+          "linkNumVariables","linkNumContinuousVariables", "linkNumIntVariables", "linkNumBinVariables", "ulNumConstraints", "llNumConstraints"];
         const name=document.createElement("td");
         const childHref=document.createElement("a");
         var address=instance["Path"];

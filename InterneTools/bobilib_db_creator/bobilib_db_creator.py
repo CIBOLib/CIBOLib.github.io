@@ -12,6 +12,8 @@ import shutil
 def add_To_Html(json_path: str, infos: dict):
     page_file = open(json_path, "r")
     default_dict = json.load(page_file)
+    linkNumContinuousVariables=default_dict["linkNumVariables"]-default_dict["linkNumIntVariables"]-default_dict["linkNumBinVariables"]
+    default_dict["linkNumContinuousVariables"]= linkNumContinuousVariables
     infos.update(default_dict)
     page_file.close()
     page_file = open(json_path, "w")
