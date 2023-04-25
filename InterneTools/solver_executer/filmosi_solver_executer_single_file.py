@@ -45,7 +45,8 @@ if aux_file_path.endswith(".aux"):
             "-time_limit",
             "3600",
             "-available_memory",
-            "32768"
+            "32768",
+            "-print_sol", "2"
         ]
         # print(command)
         subprocess.run(command, stdout=output)
