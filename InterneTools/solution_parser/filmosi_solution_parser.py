@@ -18,7 +18,7 @@ args = arg_parser.parse_args()
 class Solution_Parser():
     instance_name="";
     solver="";
-    solver_status="infeasible";
+    solver_status=None;
     objective_value=None;
     best_dual_bound=None;
     final_gap_percentage=-1;
@@ -71,8 +71,8 @@ class Solution_Parser():
                 self.lower_variables[variable]=self.variables[variable]
             else:
                 self.upper_variables[variable]=self.variables[variable]
-                #raise Exception("Variable not found in original instance", variable); 
-                #-> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here) 
+                #raise Exception("Variable not found in original instance", variable);
+                #-> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here)
 
 
         soldata = {
