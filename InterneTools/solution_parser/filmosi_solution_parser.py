@@ -17,40 +17,54 @@ args = arg_parser.parse_args()
 
 class Solution_Parser():
     instance_name="";
+    input_file=None;
+    root_bound=None;
+    time=-1;
+    root_time=-1;
+    feasible=-100;
+    nodes=-1;
+    setting=None;
+
     solver="";
     solver_status=None;
     objective_value=None;
     best_dual_bound=None;
-    final_gap_percentage=-1;
+    final_gap_percentage=None;
+    root_gap_percentage=None;
     upper_variables={};
     lower_variables={};
     variables={};
-    feasible=-1
 
     def __init__(self):
         return
 
     def process_stat_line(self, line):
-        # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7] ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11]
+        # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7]->(-1,0,1) ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11]
         if line.startswith("STAT;ERROR: solution not bilevel feasible"):
-            self.feasible=-1
             self.solver_status="ERROR: solution not bilevel feasible"
             return
-
-        line=line.replace(" ","")
-        data=line.split(";")
-
-        self.feasible=int(data[7])
-        if self.feasible>=0:
+        try:
+            line=line.replace(" ","")
+            data=line.split(";")
+            self.input_file=data[1]
             self.objective_value=float(data[2])
             self.best_dual_bound=float(data[3])
+            self.root_bound=float(data[4])
+            self.time=float(data[5])
+            self.root_time=float(data[6])
+            self.feasible=int(data[7])
+            self.nodes=int(data[8])
+            self.root_gap_percentage=float(data[9])
             self.final_gap_percentage=float(data[10])
-            time=float(data[5])
-            if time>=3600 or self.feasible==0: #or only if there are special cases, I do not know yet
-                self.solver_status="not solved to optimality"
-            else:
-                self.solver_status="solved to optimality"
-        return
+            self.setting=data[11]
+            
+            if self.feasible>=0:
+                if self.time>=3600 or self.feasible==0: #or only if there are special cases, I do not know yet
+                    self.solver_status="not solved to optimality"
+                else:
+                    self.solver_status="solved to optimality"
+            return
+        except: raise Exception("unknown status")
 
     def process_solution_line(self, line):
         line=line.strip(' ')
@@ -81,6 +95,15 @@ class Solution_Parser():
             'solver_status':self.solver_status,
             'objective_value': self.objective_value,
             'best_dual_bound': self.best_dual_bound,
+            'input_file':self.input_file,
+            'root_bound':self.root_bound,
+            'time':self.time,
+            'root_time':self.root_time,
+            'feasible':self.feasible,
+            'nodes':self.nodes,
+            'root_gap_percentage':self.root_gap_percentage,
+            'best_dual_bound_percentage':self.final_gap_percentage,
+            'setting':self.setting,
             'leader_variables': self.upper_variables,
             'follower_variables': self.lower_variables,
         }
@@ -110,7 +133,9 @@ with open_input_file(args.logfile) as logfile:
         if line[:len('STAT;')]=='STAT;':
             sol_parser.process_stat_line(line)
         elif sol_parser.feasible==0 or sol_parser.feasible==1:
-            if line=="\n" or line.__contains__("AVAILABLE") or line.__contains__("LEADER COST") or line.__contains__("----") :
+            if line.__contains__("NO SOLUTION AVAILABLE"):
+                break
+            elif line=="\n" or line.__contains__("AVAILABLE") or line.__contains__("LEADER COST") or line.__contains__("----") :
                 continue
             else:
                 sol_parser.process_solution_line(line)
