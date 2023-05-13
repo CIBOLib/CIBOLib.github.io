@@ -7,7 +7,7 @@ import os.path as path
 import argparse
 
 arg_parser = argparse.ArgumentParser(
-    description="executes the filmosi (Fischetti, Ljubic, Monaci and Sinnl) solver for all files in the input_dir"
+    description="executes the filmosi (Fischetti, Ljubic, Monaci and Sinnl) solver for given auxfile"
 )
 arg_parser.add_argument(
     "--aux_file_path",
