@@ -49,5 +49,9 @@ if aux_file_path.endswith(".aux"):
             "-print_sol", "2"
         ]
         # print(command)
-        subprocess.run(command, stdout=output)
-        # run waits until the process is finished
+        try:
+            subprocess.run(command, stdout=output, timeout=3800)
+            # run waits until the process is finished
+        # handling that solver does not respect timelimit
+        except subprocess.TimeoutExpired:
+            print("Set timelimit was not respected by solver. Killed process on my own!")
