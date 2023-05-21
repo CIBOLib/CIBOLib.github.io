@@ -73,20 +73,20 @@ class Solution_Parser():
         self.variables[variable]=variable_value
 
     def assemble_result(self):
+        if len(self.variables)>0:
+            metadata=variables_parser.get_metadata(args.mpsfile, args.auxfile)
+            upper_variables_names=metadata['leader_variables']
+            lower_variables_names=metadata['follower_variables']
 
-        metadata=variables_parser.get_metadata(args.mpsfile, args.auxfile)
-        upper_variables_names=metadata['leader_variables']
-        lower_variables_names=metadata['follower_variables']
-
-        for variable in self.variables.keys():
-            if variable in upper_variables_names:
-                self.upper_variables[variable]=self.variables[variable]
-            elif variable in lower_variables_names:
-                self.lower_variables[variable]=self.variables[variable]
-            else:
-                self.upper_variables[variable]=self.variables[variable]
-                #raise Exception("Variable not found in original instance", variable);
-                #-> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here)
+            for variable in self.variables.keys():
+                if variable in upper_variables_names:
+                    self.upper_variables[variable]=self.variables[variable]
+                elif variable in lower_variables_names:
+                    self.lower_variables[variable]=self.variables[variable]
+                else:
+                    self.upper_variables[variable]=self.variables[variable]
+                    #raise Exception("Variable not found in original instance", variable);
+                    #-> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here)
 
 
         soldata = {

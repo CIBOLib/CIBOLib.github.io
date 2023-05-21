@@ -23,27 +23,31 @@ def get_line_value(line):
     variable_value = array[0]
     return variable_value
 
+def non_relevant(line):
+    if line.startswith("First stage") or line.startswith("Second stage") or \
+                line.startswith("Alps0260I Best solution") or line.__contains__("Best solution found:") or \
+                line.startswith("Optimal solution:") or line.__contains__("====") or line.startswith("Blis"):
+        return True
+    False
 
 class Solution_Parser():
 
     instance_name = ""
-    input_file = None
     time = -1
     cpu_time = -1
     root_time = -1
     feasible = -100
-    nodes = -1
 
     solver = ""
     solver_status = None
     objective_value = None
 
-    tree_depth = -1
-    processed_nodes = -1
-    partially_processed_nodes = -1
-    not_processed_nodes = -1
-    branched_nodes = -1
-    pruned_nodes = -1
+    tree_depth = 0
+    processed_nodes = 0
+    partially_processed_nodes = 0
+    not_processed_nodes = 0
+    branched_nodes = 0
+    pruned_nodes = 0
 
     upper_variables = {}
     lower_variables = {}
@@ -118,26 +122,26 @@ class Solution_Parser():
         self.variables[variable] = variable_value
 
     def assemble_result(self):
+        if len(self.variables) > 0:
+            metadata = variables_parser.get_metadata(
+                args.mpsfile, args.auxfile)
+            #upper_variables_names = metadata['leader_variables']
+            lower_variables_names = metadata['follower_variables']
 
-        metadata = variables_parser.get_metadata(args.mpsfile, args.auxfile)
-        #upper_variables_names = metadata['leader_variables']
-        lower_variables_names = metadata['follower_variables']
-
-        for variable in self.variables.keys():
-            if variable in lower_variables_names:
-                self.lower_variables[variable] = self.variables[variable]
-            else:
-                self.upper_variables[variable] = self.variables[variable]
-                #raise Exception("Variable not found in original instance", variable);
-                # -> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here). 
-                # I do not need to process the bound this way
+            for variable in self.variables.keys():
+                if variable in lower_variables_names:
+                    self.lower_variables[variable] = self.variables[variable]
+                else:
+                    self.upper_variables[variable] = self.variables[variable]
+                    #raise Exception("Variable not found in original instance", variable);
+                    # -> the variable has to be an upper level variable OR it is really not in the instance (I do not assume this case here).
+                    # I do not need to process the bound this way
 
         soldata = {
             'instance_name': self.instance_name,
             'solver': self.solver,
             'solver_status': self.solver_status,
             'objective_value': self.objective_value,
-            'input_file': self.input_file,
             'time': self.time,
             'cpu_time': self.cpu_time,
             'tree_depth': self.tree_depth,
@@ -183,9 +187,9 @@ with open_input_file(args.logfile) as logfile:
             elif line.startswith("Alps0202I Problem is infeasible."):
                 sol_parser.feasible = -1
         else:  # start to parse the other result lines
-            if line == "\n" or line.__contains__("Best solution found:") or line.__contains__("----") or line.startswith("Blis"):
+            if line == "\n" or non_relevant(line):
                 continue
-            elif line.startswith("Alps0265I Number of nodes fully processed"):
+            elif line.startswith("Alps0265I Number of nodes fully processed") or line.startswith("Alps0264I Number of nodes processed"):
                 sol_parser.process_processed_nodes_line(line)
             elif line.startswith("Alps0266I Number of nodes partially processed"):
                 sol_parser.process_partially_processed_nodes_line(line)
@@ -203,7 +207,10 @@ with open_input_file(args.logfile) as logfile:
                 sol_parser.process_wall_clock_time_line(line)
             elif line.startswith("Cost"):
                 sol_parser.process_cost_line(line)
-            else:
+            # no further results regarding variables
+            elif line.startswith("Number of problems"):
+                break
+            elif not sol_parser.objective_value is None:
                 sol_parser.process_solution_line(line)
 
 result = sol_parser.assemble_result()

@@ -2,14 +2,10 @@ import gzip
 
 
 class AuxParser():
-    number_of_lower_constraints = 0
-    number_of_lower_variables = 0
     # a dictionary that always contains True for all variable names/indices that are of the lower level
     lower_variable_dict = {}
     # a dictionary that always contains True for all variable names/indices that are of the lower level
     lower_constraint_dict = {}
-    # objective sense 1 -> min, -1 -> max
-    objective_sense = 1
 
     # a list of the order that the LC entries appear in.
     lc_entries = []
@@ -18,28 +14,26 @@ class AuxParser():
         pass
 
     def process_next_line(self, line):
-        [val_type, value] = line.split()
+        array = line.split()
+        if len(array)==2:
+            [val_type, value]=array
+        elif len(array)==0:#empty
+            return
+        else:
+            raise Exception("weird line")
         if value.isnumeric():
             value = int(value)
-        if val_type == "N":
-            self.number_of_lower_variables = int(value)
-        elif val_type == "M":
-            self.number_of_lower_constraints = int(value)
-        elif val_type == "LC":
+        if val_type == "LC":
             self.lower_variable_dict[value] = True
             self.lc_entries.append(value)
         elif val_type == "LR":
             self.lower_constraint_dict[value] = True
-        elif val_type == "OS":
-            self.objective_sense = value
         else:
             return
 
 
 class MpsParser():
     current_row_index = 0
-
-    problem_name = None
 
     # a dictionary pointing from the row name to a tuple containing (row sense, bool is_lower)
     row_metadata = {}
@@ -56,7 +50,6 @@ class MpsParser():
     # we start the counter at -1 because it will be incremented at the first entry already
     current_column_index = -1
     # 
-    int_marker_active = False
 
     def __init__(self, aux_parser):
         self.aux_parser = aux_parser
@@ -68,9 +61,7 @@ class MpsParser():
         if line[0] != " ":
             next_section = line.strip()
             if next_section.startswith("NAME") or next_section.startswith("*NAME"):
-                name=line.split()
-                if(len(name)>1):
-                    self.problem_name = name[1].strip()
+                pass
             elif next_section == "OBJSENSE":
                 self.process_next_line_inner = self.process_non_relevant_line
             elif next_section == "ROWS":
@@ -85,14 +76,13 @@ class MpsParser():
                 pass  #raise Exception(f"unknown section marker: {next_section}")
         else:
             self.process_next_line_inner(line)
-
+    
+    def process_non_relevant_line(self,line):
+        return
+    
     def process_end(self, line):
         if len(line.strip()) > 0:
             raise Exception("found non empty line after ENDATA")
-
-    def process_non_relevant_line(self, line):
-        # do nothing here
-        return
 
     def process_rows_line(self, line):
         [row_type, row_name] = line.split()
@@ -112,12 +102,6 @@ class MpsParser():
 
     def process_columns_line(self, line):
         if "'MARKER'" in line:
-            if "'INTORG'" in line:
-                self.int_marker_active = True
-            elif "'INTEND'" in line:
-                self.int_marker_active = False
-            else:
-                raise Exception('Invalid marker row found: ' + line.strip())
             return
 
         line = line.split()
@@ -140,7 +124,7 @@ class MpsParser():
         if row_sense == "G":
             value *= -1
 
-        if row_sense == "N" and self.cost_row_name == row_name: #cost vector, not relevant for us here
+        if row_sense == "N" and self.cost_row_name == row_name: #cost vector, not relevant for us here, but there can only be one
             return
 
         if row_name in self.row_entries:
@@ -161,7 +145,6 @@ class MpsParser():
         lower_variables.sort()
 
         metadata = {
-            'instance_name': self.problem_name,
             'leader_variables': upper_variables,
             'follower_variables': lower_variables,
         }
