@@ -1,42 +1,28 @@
-import argparse
-import json
-import variables_parser #can decide the level of a variable
+from . import variables_parser
+import os
 
-arg_parser = argparse.ArgumentParser(
-    description="Parses the log files and extracts with the help of the variables parser the lower level and upper level variable names. Returns a result file.")
-arg_parser.add_argument('--logfile', action='store',
-                        help='Thelog file to parse', required=True)
-arg_parser.add_argument('--mpsfile', action='store',
-                        help='The mps file to parse', required=True)
-arg_parser.add_argument('--auxfile', action='store',
-                        help='the aux file belonging to the instance', required=True)
-arg_parser.add_argument('--output_path', action='store',
-                        help='the output path for the *.filmosi.res', required=True)
-args = arg_parser.parse_args()
-
-
-class Solution_Parser():
-    instance_name="";
-    input_file=None;
-    root_bound=None;
-    time=-1;
-    root_time=-1;
-    feasible=-100;
-    nodes=-1;
-    setting=None;
-
-    solver="";
-    solver_status=None;
-    objective_value=None;
-    best_dual_bound=None;
-    final_gap_percentage=None;
-    root_gap_percentage=None;
-    upper_variables={};
-    lower_variables={};
-    variables={};
+class Filmosi_Solution_Parser():
+    
 
     def __init__(self):
-        return
+        self.instance_name=""
+        self.input_file=None
+        self.root_bound=None
+        self.time=-1
+        self.root_time=-1
+        self.feasible=-100
+        self.nodes=-1
+        self.setting=None
+
+        self.solver="(Fischetti, Ljubic, Monaci, Sinnl)-Solver"
+        self.solver_status=None
+        self.objective_value=None
+        self.best_dual_bound=None
+        self.final_gap_percentage=None
+        self.root_gap_percentage=None
+        self.upper_variables={}
+        self.lower_variables={}
+        self.variables={}
 
     def process_stat_line(self, line):
         # STAT[0]; input_file[1] ; zbest[2] ; final_bound[3] ; root_bound[4] ; time (s.)[5] ; root_time (s.)[6] ; opt[7]->(-1,0,1) ; nodes[8] ; %root_gap[9] ; %final_gap[10] ; setting[11]
@@ -72,9 +58,9 @@ class Solution_Parser():
         variable, variable_value=array[0],float(array[len(array)-1])
         self.variables[variable]=variable_value
 
-    def assemble_result(self):
-        if len(self.variables)>0:
-            metadata=variables_parser.get_metadata(args.mpsfile, args.auxfile)
+    def assemble_result(self, mps_file, aux_file):
+        if len(self.variables)>0 and self.feasible!=-100:
+            metadata = variables_parser.get_metadata(mps_file, aux_file)
             upper_variables_names=metadata['leader_variables']
             lower_variables_names=metadata['follower_variables']
 
@@ -109,36 +95,19 @@ class Solution_Parser():
         }
         return soldata
 
-def write_result_json(path: str, result_dictionary: dict):
-    name_of_file=path+".json"
-    json_file = open(name_of_file, "w")
-    json.dump(result_dictionary, json_file, indent=4)
-    json_file.close()
+    def run(self, mps_file: str, aux_file: str, logfile: str) -> dict:
+        self.instance_name = logfile.removesuffix(".filmosi.log")
+        with open(logfile, "r") as input_file:
+            for line in input_file.readlines():
+                if line[:len('STAT;')]=='STAT;':
+                    self.process_stat_line(line)
+                elif self.feasible==0 or self.feasible==1:
+                    if line.__contains__("NO SOLUTION AVAILABLE") or self.solver_status=="ERROR: solution not bilevel feasible":
+                        break
+                    elif line=="\n" or line.__contains__("AVAILABLE") or line.__contains__("LEADER COST") or line.__contains__("----") :
+                        continue
+                    else:
+                        self.process_solution_line(line)
 
-
-def open_input_file(filename):
-        return open(filename, 'r')
-
-
-
-with open_input_file(args.logfile) as logfile:
-
-    sol_parser = Solution_Parser()
-    filename_without_extension=args.logfile[:-len(".filmosi.log")]
-    array=filename_without_extension.split("/")
-    sol_parser.instance_name=array[len(array)-1]
-    sol_parser.solver="(Fischetti, Ljubic, Monaci, Sinnl)-Solver";
-
-    for line in logfile.readlines():
-        if line[:len('STAT;')]=='STAT;':
-            sol_parser.process_stat_line(line)
-        elif sol_parser.feasible==0 or sol_parser.feasible==1:
-            if line.__contains__("NO SOLUTION AVAILABLE"):
-                break
-            elif line=="\n" or line.__contains__("AVAILABLE") or line.__contains__("LEADER COST") or line.__contains__("----") :
-                continue
-            else:
-                sol_parser.process_solution_line(line)
-
-result = sol_parser.assemble_result()
-write_result_json(args.output_path,result)
+        
+        return self.assemble_result(mps_file, aux_file)

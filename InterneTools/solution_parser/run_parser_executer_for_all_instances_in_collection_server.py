@@ -24,6 +24,8 @@ arg_parser.add_argument(
 arg_parser.add_argument(
     "--solver", action="store", required=True, help="filmosi || mibs"
 )
+arg_parser.add_argument("--index_based", action=argparse.BooleanOptionalAction,
+    help="translate the index-based output of mibs to variable names")
 args = arg_parser.parse_args()
 
 # now we go through all directories of collection
@@ -35,18 +37,24 @@ logfile_dir = args.logfile_dir
 # directory where to store the output
 output_dir = args.store_dir
 
-solver= args.solver
+solver = args.solver
 
-
-if solver in ["mibs","filmosi"]:
+if solver in ["mibs", "filmosi"]:
     for root, dirs, files in os.walk(root_dir):
         # exclude hidden directories
         dirs[:] = [d for d in dirs if not d[0] == '.']
         # # run filmosi_solution_parser_executer.py for the directories
         for dir in dirs:
-            command=["python3" ,"solution_parser_executer.py",
-                    "--input_mpsaux_dir", root+"/"+str(dir),
-                    "--input_log_dir", logfile_dir,
-                    "--output_dir", output_dir,
-                    "--solver", solver]
-            subprocess.run(command);  #run waits until the process is finished
+            if args.index_based:
+                command = ["python3", "solution_parser_executer.py",
+                        "--input_mpsaux_dir", root+"/"+str(dir),
+                        "--input_log_dir", logfile_dir,
+                        "--output_dir", output_dir,
+                        "--solver", solver, "--index_based"]
+            else:
+                command = ["python3", "solution_parser_executer.py",
+                        "--input_mpsaux_dir", root+"/"+str(dir),
+                        "--input_log_dir", logfile_dir,
+                        "--output_dir", output_dir,
+                        "--solver", solver]
+            subprocess.run(command)  # run waits until the process is finished

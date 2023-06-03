@@ -2,11 +2,10 @@
 
 Example: python3 run_parser_executer_for_all_instances_in_collection_server.py --collection /home/.../collection/ --logfile_dir ./test --store_dir test_out --solver filmosi
 
-Example_2: python3 run_parser_executer_for_all_instances_in_collection_server.py --collection /home/.../collection/ --logfile_dir ./test --store_dir test_out --solver mibs
+Example_2: python3 run_parser_executer_for_all_instances_in_collection_server.py --collection /home/.../collection/ --logfile_dir ./test --store_dir test_out --solver mibs --index_based
 
-# Direct Usage:
+--index_based is optional. Use it when the MibS-Output is index-based and not name based 
 
-Example: python3 filmosi_solution_parser.py --logfile ./results-filmosi-MIPLIB2010/30n20b8_50_50.filmosi.log --mpsfile 30n20b8.mps.gz --auxfile 30n20b8_50_50.aux > TestResult
 
 # Output format: filmosi
 

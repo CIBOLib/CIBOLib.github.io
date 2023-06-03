@@ -1,10 +1,28 @@
 # should be considered to add an argument for different solver
 
-import subprocess
 import os
 import os.path as path
 import argparse
-import os
+from multiprocessing import Pool
+
+from lib.filmosi_solution_parser import Filmosi_Solution_Parser
+from lib.mibs_solution_parser import Mibs_Solution_Parser
+from lib.util import dump_json_to_file
+
+
+def process_mibs(mps, aux, logfile):
+    return Mibs_Solution_Parser(translate_var_indices).run(mps, aux, logfile)
+
+
+def process_filmosi(mps, aux, logfile):
+    return Filmosi_Solution_Parser().run(mps, aux, logfile)
+
+
+def process_instance(input_files, output_file):
+    mps_file, aux_file, logfile = input_files
+    print(f"processing {logfile}")
+    result = parse_file(mps_file, aux_file, logfile)
+    dump_json_to_file(output_file, result)
 
 
 arg_parser = argparse.ArgumentParser(
@@ -18,57 +36,46 @@ arg_parser.add_argument('--output_dir', action='store',
 arg_parser.add_argument(
     "--solver", action="store", required=True, help="filmosi || mibs"
 )
+arg_parser.add_argument("--index_based", action=argparse.BooleanOptionalAction,
+                        help="translate the index-based output of mibs to variable names")
+
 args = arg_parser.parse_args()
 
-dir_path = args.input_mpsaux_dir
-log_mpsaux_dict = {}  # key=filename_without_extension value: mps_path and aux_path
-mps_input_dir = args.input_mpsaux_dir
-aux_input_dir = args.input_mpsaux_dir
-solver=args.solver
-
+translate_var_indices = args.index_based
+solver = args.solver
+input_log_dir = args.input_log_dir
 folder_contains_links = False
 
-for aux_file in os.scandir(path=aux_input_dir):
-    if aux_file.is_file():
-        if aux_file.name.endswith(".aux"):
-            aux_filename_without_extension = aux_file.name[:-len(".aux")]
-            mps_link = aux_input_dir + "/" + \
-                aux_file.name[:-len("aux")]+"mps.gz"
-            if os.path.islink(mps_link):
-                mps_file = aux_input_dir + "/" + os.readlink(mps_link)
-                folder_contains_links = True
-            else:
-                mps_file = mps_link
+input_instances = {}
+for curdir, _, files in os.walk(args.input_mpsaux_dir):
+    for aux_file in (x for x in files if x.endswith(".aux")):
+        instance = aux_file.removesuffix('.aux')
+        if instance in input_instances:
+            raise Exception(
+                f"instance {instance} is present in the collection twice")
 
-            if aux_filename_without_extension in log_mpsaux_dict.keys():
-                print("Key cannot be used twice.")
-            else:
-                log_mpsaux_dict[aux_filename_without_extension] = (
-                    mps_file, aux_file.path)
+        mps_file = path.join(curdir, f"{instance}.mps")
+        if not path.exists(mps_file):
+            mps_file = mps_file + ".gz"
+        if not path.exists(mps_file):
+            raise Exception(f"could not find mps file for instance {instance}")
+        aux_file = path.join(curdir, aux_file)
 
-if folder_contains_links:
-    mps_input_dir = f"{aux_input_dir}/mps-files"
+        log_file = path.join(input_log_dir, instance+f".{solver}.log")
+        if path.exists(log_file):  # logfile does not exist
+            input_instances[instance] = (mps_file, aux_file, log_file)
 
-input_log_dir = args.input_log_dir
+
 output_dir = args.output_dir
 
 os.makedirs(output_dir, exist_ok=True)
 
-for filename in os.listdir(input_log_dir):
-    if (filename.endswith("."+solver+".log")):
-        filename_without_extension = filename[:-len("."+solver+".log")]
-        output_path_without_extension = path.join(
-            output_dir, filename_without_extension)
-        input_path = path.join(input_log_dir, filename)
+parse_file = process_filmosi
+if solver == "mibs":
+    parse_file = process_mibs
 
-        if filename_without_extension in log_mpsaux_dict.keys():
+keys = list(input_instances.keys())
 
-            print("Parsing ", filename)
-
-            (mps, aux) = log_mpsaux_dict[filename_without_extension]
-            command = ["python3", "./"+solver+"_solution_parser.py", "--logfile", path.join(input_log_dir, filename),
-                       "--mpsfile", mps,
-                       "--auxfile", aux,
-                       "--output_path", output_path_without_extension + "."+solver+".res"]
-            # run waits until the process is finished
-            subprocess.run(command)
+for i in range(len(input_instances)):
+    output_path = path.join(output_dir, keys[i]) + f".{solver}.res"
+    process_instance(input_instances[keys[i]], output_path)
