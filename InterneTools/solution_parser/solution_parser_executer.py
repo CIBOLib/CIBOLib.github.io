@@ -9,6 +9,7 @@ from lib.filmosi_solution_parser import Filmosi_Solution_Parser
 from lib.mibs_solution_parser import Mibs_Solution_Parser
 from lib.util import dump_json_to_file
 
+counter=0
 
 def process_mibs(mps, aux, logfile):
     return Mibs_Solution_Parser(translate_var_indices).run(mps, aux, logfile)
@@ -19,10 +20,12 @@ def process_filmosi(mps, aux, logfile):
 
 
 def process_instance(input_files, output_file):
+    global counter
     mps_file, aux_file, logfile = input_files
-    print(f"processing {logfile}")
+    #print(f"processing {logfile}")
     result = parse_file(mps_file, aux_file, logfile)
     dump_json_to_file(output_file, result)
+    counter+=1
 
 
 arg_parser = argparse.ArgumentParser(
@@ -47,8 +50,11 @@ input_log_dir = args.input_log_dir
 folder_contains_links = False
 
 input_instances = {}
-for curdir, _, files in os.walk(args.input_mpsaux_dir):
-    for aux_file in (x for x in files if x.endswith(".aux")):
+curdir=args.input_mpsaux_dir
+print("EXCEUTER: collect next dir instances",curdir)
+for entry in os.scandir(args.input_mpsaux_dir):
+    if entry.name.endswith(".aux"):
+        aux_file=entry.name
         instance = aux_file.removesuffix('.aux')
         if instance in input_instances:
             raise Exception(
@@ -64,6 +70,8 @@ for curdir, _, files in os.walk(args.input_mpsaux_dir):
         log_file = path.join(input_log_dir, instance+f".{solver}.log")
         if path.exists(log_file):  # logfile does not exist
             input_instances[instance] = (mps_file, aux_file, log_file)
+        else:
+            raise Exception(f"no logfile for {instance} found")
 
 
 output_dir = args.output_dir
@@ -75,7 +83,12 @@ if solver == "mibs":
     parse_file = process_mibs
 
 keys = list(input_instances.keys())
+print("recognized",len(input_instances), "instances." )
 
 for i in range(len(input_instances)):
     output_path = path.join(output_dir, keys[i]) + f".{solver}.res"
-    process_instance(input_instances[keys[i]], output_path)
+    try:
+        process_instance(input_instances[keys[i]], output_path)
+    except Exception as e:
+        print("Exception in",input_instances[keys[i]],e)
+print(curdir,"finished. Number of processed instances: ", counter)

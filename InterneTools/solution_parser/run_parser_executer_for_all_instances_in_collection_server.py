@@ -57,4 +57,5 @@ if solver in ["mibs", "filmosi"]:
                         "--input_log_dir", logfile_dir,
                         "--output_dir", output_dir,
                         "--solver", solver]
+            print("\n\nRECURSIVE: Next dir",dir)
             subprocess.run(command)  # run waits until the process is finished
