@@ -141,7 +141,7 @@ class Mibs_Solution_Parser():
                 lower_variables_names_dict = self.translate_vars(
                     instance_metadata["follower_variables"],leader_variable=False)
             else:
-                
+
                 upper_variables_dict=dict.fromkeys(instance_metadata["leader_variables"],0)
                 for index in range(len(upper_variables_dict)):
                     upper_variables_names_dict[instance_metadata["leader_variables"][index]]=instance_metadata["leader_variables"][index]
@@ -149,7 +149,7 @@ class Mibs_Solution_Parser():
                 lower_variables_dict=dict.fromkeys(instance_metadata["follower_variables"],0)
                 for index in range(len(lower_variables_dict)):
                     lower_variables_names_dict[instance_metadata["follower_variables"][index]]=instance_metadata["follower_variables"][index]
-            
+
             dict_keys_upper=set(list(self.variables.keys())).intersection(set(instance_metadata["leader_variables"]))
             dict_keys_lower=set(list(self.variables.keys())).intersection(set(instance_metadata["follower_variables"]))
             upper_keys=list(upper_variables_names_dict.keys())
@@ -157,7 +157,7 @@ class Mibs_Solution_Parser():
             for index in range(len(upper_variables_names_dict)):
                 if upper_keys[index] in dict_keys_upper:
                     upper_variables_dict[upper_values[index]]=self.variables[ upper_keys[index]]
-            
+
             lower_keys=list(lower_variables_names_dict.keys())
             lower_values=list(lower_variables_names_dict.values())
             for index in range(len(lower_variables_names_dict)):
@@ -170,7 +170,7 @@ class Mibs_Solution_Parser():
             self.upper_variables=upper_variables_dict
             self.lower_variables=lower_variables_dict
 
-            
+
 
         soldata = {
             'instance_name': self.instance_name,
@@ -192,7 +192,7 @@ class Mibs_Solution_Parser():
         return soldata
 
     def run(self,  mps_file: str, aux_file: str, logfile: str) -> dict:
-        self.instance = path.basename(logfile).removesuffix(".mibs.log")
+        self.instance_name = path.basename(logfile).removesuffix(".mibs.log")
         with open(logfile, 'r') as input_file:
             for line in input_file.readlines():
                 if self.feasible == -100:  # computation stuff, feasible=default value
@@ -231,4 +231,3 @@ class Mibs_Solution_Parser():
                     elif not self.objective_value is None:
                         self.process_solution_line(line)
         return self.assemble_result(mps_file, aux_file)
-
