@@ -1,8 +1,9 @@
+from os import path
 from . import variables_parser
 import os
 
 class Filmosi_Solution_Parser():
-    
+
 
     def __init__(self):
         self.instance_name=""
@@ -43,7 +44,7 @@ class Filmosi_Solution_Parser():
             self.root_gap_percentage=float(data[9])
             self.final_gap_percentage=float(data[10])
             self.setting=data[11]
-            
+
             if self.feasible>=0:
                 if self.time>=3600 or self.feasible==0: #or only if there are special cases, I do not know yet
                     self.solver_status="not solved to optimality"
@@ -96,7 +97,7 @@ class Filmosi_Solution_Parser():
         return soldata
 
     def run(self, mps_file: str, aux_file: str, logfile: str) -> dict:
-        self.instance_name = logfile.removesuffix(".filmosi.log")
+        self.instance_name = path.basename(logfile).removesuffix(".filmosi.log")
         with open(logfile, "r") as input_file:
             for line in input_file.readlines():
                 if line[:len('STAT;')]=='STAT;':
@@ -109,5 +110,5 @@ class Filmosi_Solution_Parser():
                     else:
                         self.process_solution_line(line)
 
-        
+
         return self.assemble_result(mps_file, aux_file)

@@ -42,6 +42,8 @@ if aux_file_path.endswith(".aux"):
             aux_file_path,
             "-Alps_timeLimit",
             "3600",
+            "-writeSolnFile",
+            output_path_without_extension + ".mibs.sol"
         ]
         # print(command)
         try:
