@@ -1,0 +1,9 @@
+{
+    "name": "OR30x250-0.50_3.dat-50",
+    "bilevel_type": "optimistic",
+    "status": "open",
+    "difficulty": "hard",
+    "objective_value": null,
+    "upper_level_decisions": null,
+    "lower_level_decisions": null
+}
