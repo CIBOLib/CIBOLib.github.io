@@ -3,15 +3,18 @@ layout: default
 title: BOBILib&#58; Bilevel Optimization (Benchmark) Instance Library
 ---
 
-<h2>Generating QP problem data</h2>
+<h2>Generators</h2>
 
 <div class="blurb">
   All instances in the BOBILib contain linear upper- and lower-level
   objective functions.
-  The <a href="https://github.com/m-schmidt-math-opt/qp-bilevel-matrix-generator">qp-bilevel-matrix-generator</a>
+    <ul>
+    <li>The <a href="https://github.com/m-schmidt-math-opt/qp-bilevel-matrix-generator">qp-bilevel-matrix-generator</a>
   can be used to generate quadratic matrices (with a controllable
   size, density, and spectrum) to extend the given linear instances to
-  quadratic ones.
+      quadratic ones.</li>
+    <li>An instance generator for general MIBLPs that was used to generate
+    some instances in the library is available <a href="https://github.com/tkralphs/MIBLPInstanceGenerator">here</a>.
 </div>
 
 <h2>Feasibility Checker</h2>
