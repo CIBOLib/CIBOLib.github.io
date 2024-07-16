@@ -4,5 +4,5 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "jekyll"
-gem "jekyll-theme-basically-basic"
+gem "github-pages", group: :jekyll_plugins
+remote_theme: "mmistakes/jekyll-theme-basically-basic@1.4.5"
