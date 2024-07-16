@@ -1,6 +1,6 @@
 ## BOBILib
 
-The HTML site of this project can be reached via: https://nlopt.gitlab-pages.uni-trier.de/bobilib/.
+The HTML site of this project can be reached via: https://bobilib.org/.
 
 Learn more about GitLab Pages at https://pages.gitlab.io and the official
 documentation https://docs.gitlab.com/ce/user/project/pages/.
