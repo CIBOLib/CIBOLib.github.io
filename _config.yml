@@ -1,7 +1,0 @@
-exclude:
-  - vendor
-
-name: BOBILib
-markdown: kramdown
-
-theme: jekyll-theme-basically-basic
