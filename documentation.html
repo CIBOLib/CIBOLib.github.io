@@ -1,130 +1,136 @@
 ---
 layout: default
-title: BOBILib Documentation
+title: BOBILib&#58; Bilevel Optimization (Benchmark) Instance Library
 ---
 
 <!-- Include MathJax to use latex -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-      tex2jax: {
-	  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-	  inlineMath: [['$','$']]
+      "HTML-CSS" : {
+          availableFonts : ["TeX"],
+	  scale: 90
       }
   });
 </script>
+
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 <h2>Model class</h2>
 
 <div class="blurb">
-  The BOBILib contains bilevel optimization instances that are all
-  part of the class of MILP-MILP bilevel problems.
+  BOBILib contains bilevel optimization instances that are
+  all part of the class of MILP-MILP bilevel problems.
   This means that both the upper- and the lower-level problem is a
-  mixed-integer linear problem (MILP).
+  mixed integer linear problem (MILP).
   In particular, this includes the possibility that both the upper- and
   the lower-level problem can be
   <ul>
     <li>a continuous linear problem,</li>
-    <li>a purely integer problem,</li>
-    <li>a mixed-integer linear problem.</li>
+    <li>a pure integer linear problem,</li>
+    <li>a mixed integer linear problem.</li>
   </ul>
   More formally, the class of problems considered is defined by
 
   \begin{align}
-  \min_{x,y} \quad & c^T x + d^T y \\
+  \min_{x,y} \quad & c_u^\top x + d_u^\top y \\
   \text{s.t.} \quad & Ax + By \geq a, \\
+  & x_i \in \mathbb{Z} \cap [x_i^-, x_i^+] \quad \text{for all } i \in I_u \subseteq \{1, \ldots, n_x\},\\
   & y \in S(x),
   \end{align}
 
-  where $S(x)$ is the set of solutions of the $x$-parameterized
+  where \(S(x)\) is the set of solutions of the \(x\)-parameterized
   lower-level problem
 
   \begin{align}
-  \min_y \quad & e^T y \\
-  \text{s.t.} \quad & Cx + Dy \geq b.
+  \min_y \quad & e^\top y \\
+  \text{s.t.} \quad & Cx + Dy \geq b,\\
+  & y_i \in \mathbb{Z} \cap [y_i^-, y_i^+] \quad \text{for all } i \in I_l \subseteq \{1, \ldots, n_y\}.
   \end{align}
-
-  Note that this is the so-called optimistic bilevel problem because
-  the leader also optimizes over the lower-level variables $y$ if the
-  set $S(x)$ is not a singleton.
-</div><!-- /.blurb -->
+</div>
 
 <h2>Model statistics</h2>
 
 <div class="blurb">
-  The instances in the <a href="/instances">instance table</a> can be
-  sorted with respect to different properties of the bilevel problem.
-</div><!-- /.blurb -->
+  The instances in the instance tables
+  (<a href="https://nlopt.gitlab-pages.uni-trier.de/bobilib/instances-benchmark.html">benchmark</a>, <a href="https://nlopt.gitlab-pages.uni-trier.de/bobilib/instances-collection.html">collection</a>)
+  can be sorted with respect to the following statistics of the instances.
+</div>
 
 <div class="blurb">
-  <table border="0" id="properties">
+  <table class="center">
     <thead>
-      <tr style="text-align: center;">
+      <tr>
 	<th>Symbol</th>
 	<th>Explanation</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-	<td>$n_U$</td>
+	<td>\(n_x\)</td>
 	<td>Number of upper-level variables</td>
       </tr>
       <tr>
-	<td>$n_U^I$</td>
+	<td>\(|I_u|\)</td>
 	<td>Number of upper-level integer variables</td>
       </tr>
       <tr>
-	<td>$n_U^B$</td>
+	<td>\(|B_u|\)</td>
 	<td>Number of upper-level binary variables</td>
       </tr>
       <tr>
-	<td>$n_L$</td>
+	<td>\(n_y\)</td>
 	<td>Number of lower-level variables</td>
       </tr>
       <tr>
-	<td>$n_L^I$</td>
+	<td>\(|I_l|\)</td>
 	<td>Number of lower-level integer variables</td>
       </tr>
       <tr>
-	<td>$n_L^B$</td>
+	<td>\(|B_l|\)</td>
 	<td>Number of lower-level binary variables</td>
       </tr>
       <tr>
-	<td>$n_{Link}$</td>
+	<td>\(n_\mathrm{Link}\)</td>
 	<td>Number of linking variables</td>
       </tr>
       <tr>
-	<td>$n_{Link}^C$</td>
+	<td>\(n_\mathrm{Link}^C\)</td>
 	<td>Number of continuous linking variables</td>
       </tr>
       <tr>
-	<td>$n_{Link}^I$</td>
+	<td>\(n_\mathrm{Link}^I\)</td>
 	<td>Number of integer linking variables</td>
       </tr>
       <tr>
-	<td>$n_{Link}^B$</td>
+	<td>\(n_\mathrm{Link}^B\)</td>
 	<td>Number of binary linking variables</td>
       </tr>
       <tr>
-	<td>$m_U$</td>
+	<td>\(m_u\)</td>
 	<td>Number of upper-level constraints</td>
       </tr>
       <tr>
-	<td>$m_L$</td>
+	<td>\(m_l\)</td>
 	<td>Number of lower-level constraints</td>
+      </tr>
+      <tr>
+	<td>\(m_\mathrm{Coup}\)</td>
+	<td>Number of coupling constraints</td>
       </tr>
     </tbody>
   </table>
-</div><!-- /.blurb -->
+</div>
 
 <h2>Input file format</h2>
 
 <div class="blurb">
   All instances in the BOBILib use
-  the <a href="https://coin-or.github.io/MibS/input.html">MibS input
+  the (name-based) <a href="https://coin-or.github.io/MibS/input.html">MibS input
     file format</a> and are thus given as pairs of mps and aux files.
 
   For more information about the MPS file format, read the respective
   <a href="https://en.wikipedia.org/wiki/MPS_(format)">MPS (format)
-  wikipedia page</a>.
-</div><!-- /.blurb -->
+    wikipedia page</a>.
+  A detailed explanation with an example is given in section 4 of the <a href="http://www.google.com">BOBILib report</a>.
+  There, you also find the definition and an example for the solution format.
+</div>

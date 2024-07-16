@@ -1,0 +1,165 @@
+---
+layout: default
+title: BOBILib&#58; Bilevel Optimization (Benchmark) Instance Library
+---
+
+<!-- Include MathJax to use latex -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      "HTML-CSS" : {
+	  availableFonts : ["TeX"],
+	  scale: 90
+      }
+  });
+</script>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+	type="text/javascript"></script>
+
+<div class="blurb">
+  This page lists all BOBILib benchmark instances.
+  Columns can be sorted by clicking on the column heads.
+  For column-wise filters, use the masks (e.g., >1000).
+
+  <table class="center" id="instances">
+    <thead>
+      <tr>
+        <th>Instance</th>
+        <th>Class</th>
+        <th>Type</th>
+        <th>\(n_x\)</th>
+        <th>\(|I_u|\)</th>
+        <th>\(|B_u|\)</th>
+        <th>\(n_y\)</th>
+        <th>\(|I_l|\)</th>
+        <th>\(|B_l|\)</th>
+        <th>\(n_\mathrm{Link}\)</th>
+        <th>\(n_\mathrm{Link}^\mathrm{I}\)</th>
+        <th>\(n_\mathrm{Link}^\mathrm{B}\)</th>
+	<th>\(n_\mathrm{Link}^\mathrm{C}\)</th>
+        <th>\(m_u\)</th>
+        <th>\(m_l\)</th>
+        <th>\(m_\mathrm{Coup}\)</th>
+	<th>Objective value</th>
+        <th>Status</th>
+	<th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script src="tablefilter/tablefilter.js"></script>
+
+  <script>
+
+    async function intializeTableFilter() {
+	var filtersConfig = {
+	    base_path: 'tablefilter/',
+	    alternate_rows: true,
+	    auto_filter: {
+		delay: 110 //milliseconds
+	    },
+	    rows_counter: { text: 'Number of instances: ' },
+	    btn_reset: { text: 'Clear filters' },
+	    responsive: true,
+	    loader: true,
+	    no_results_message: true,
+
+	    // columns data types
+	    col_types: [
+		'string',
+		'string',
+		'string',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'formatted-number',
+		'string',
+		'string'
+	    ],
+	    /* columns visibility and sort extension */
+            extensions: [{
+		name: 'colsVisibility',
+		/*at_start: [3, 5],*/
+		text: 'Hide columns: ',
+		enable_tick_all: true
+            }, {
+		name: 'sort'
+            }],
+
+	    /* Bootstrap integration */
+            // aligns filter at cell bottom when Bootstrap is enabled
+            filters_cell_tag: 'th',
+            // allows Bootstrap table styling
+            themes: [{
+		name: 'transparent'
+            }]
+	};
+	var tf = new TableFilter('instances', filtersConfig);
+	tf.init();
+    }
+
+    async function fetchJsonFile() {
+	const table_content = new DocumentFragment();
+	let jsonFile = await fetch('htmls-benchmark/all_instances.json');
+	let content = await jsonFile.json();
+	return content;
+    }
+
+    async function buildTable() {
+	var content = await fetchJsonFile();
+	const instances_content = document.querySelector('tbody');
+	for (instancename in content) {
+	    const elem = document.createElement('tr');
+	    const instance = content[instancename];
+	    var col_names = ["Class",
+			     "Type",
+			     "num_leader_variables",
+			     "num_integer_leader_variables",
+			     "num_binary_leader_variables",
+			     "num_follower_variables",
+			     "num_integer_follower_variables",
+			     "num_binary_follower_variables",
+			     "num_linking_variables",
+			     "num_integer_linking_variables",
+			     "num_binary_linking_variables",
+			     "num_continuous_linking_variables",
+			     "num_upper_level_constraints",
+			     "num_lower_level_constraints",
+			     "num_coupling_constraints",
+			     "objective_value",
+			     "status",
+			     "difficulty"];
+	    const name=document.createElement("td");
+	    const childHref=document.createElement("a");
+	    var address=instance["Path"];
+	    childHref.append(instance["Instance"]);
+	    childHref.setAttribute("href", address);
+	    name.appendChild(childHref);
+	    elem.appendChild(name);
+
+	    for (key of col_names) {
+		const value = document.createElement('td');
+		value.append(instance[key]);
+		elem.appendChild(value);
+	    }
+	    instances_content.appendChild(elem);
+	}
+	intializeTableFilter()
+    }
+    buildTable();
+
+  </script>
+
+</div>
